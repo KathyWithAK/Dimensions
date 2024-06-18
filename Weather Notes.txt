@@ -119,27 +119,31 @@ DEFAULT_LONGITUDE = -71.06054679461245
 
     Possible weather conditions from the API
 
-	chancerainshowers
-	chanceshowersandthunderstorms
-	clear
-	isolatedrainshowers
-	isolatedshowersandthunderstorms
-	mostlyclear
-	mostlycloudy
-	mostlysunny
-	partlycloudy
-	partlysunny
-	rainshowers
-	rainshowerslikely
-	scatteredrainshowers
-	scatteredshowersandthunderstorms
-	showersandthunderstormslikely
-	showersandthunderstorms
-	slightchancerainshowers
-	slightchanceshowersandthunderstorms
-	sunny
-        (I assume there are also snow messages, but the api does not return those now as its summer)
-
+		chancerainshowers
+		chanceshowersandthunderstorms
+		clear
+		isolatedrainshowers
+		isolatedshowersandthunderstorms
+		mostlyclear
+		mostlycloudy
+		mostlysunny
+		partlycloudy
+		partlysunny
+		rainshowers
+		rainshowerslikely
+		scatteredrainshowers
+		scatteredshowersandthunderstorms
+		showersandthunderstormslikely
+		showersandthunderstorms
+		slightchancerainshowers
+		slightchanceshowersandthunderstorms
+		sunny
+		slightchancerainandsnowshowers
+		slightchancesnowshowers
+		chancelightsnow
+		scatteredsnowshowers
+		isolatedsnowshowers
+		chancesnowshowers
 
    You can define this list at the bottom of the scripts.py file.
 
@@ -158,7 +162,7 @@ DEFAULT_LONGITUDE = -71.06054679461245
 
     }
 
-   The script cycles through all of the rooms have 'outside' (category='location) and 
+   The script cycles through all of the rooms have 'outside' (category='location') and 
    displays a message at a random interval based on MESSAGE_FREQUENCY (rand 0-MESSAGE_FREQUENCY)
    for each room. If you set MESSAGE_FREQUENCY to zero, it will stop all messages displayed
    to rooms.
