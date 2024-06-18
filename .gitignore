@@ -54,3 +54,7 @@ nosetests.xml
 
 # VSCode config
 .vscode
+server/conf/settings.py
+server/evennia.db3.vanilla
+server/evennia.db3.with_all_scripts_and_space
+server/evennia.db3.with_initial_rooms_and_space
