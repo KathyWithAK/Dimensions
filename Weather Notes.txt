@@ -1,0 +1,177 @@
+The weather generator requires a script (which handles polling data from the APIs) and a room class which will contain the "weather" command and necessary flags for each of the weather-related displays. I use a room tag to decide which weather to pull from the script, so you will need to add a dict for each different weather zone you want to have avaliable. 
+
+            [ { 'zone_name': '', 'latitude': '', 'longitude': '', last_update: ''} ]
+
+For one zone across the world, you only need use the default dict.
+
+
+
+1. Create the script - this is done by defining it in the server config (settings.py)
+
+GLOBAL_SCRIPTS = {
+    'weather_script': {
+        'typeclass': 'typeclasses.scripts.WeatherScript',
+        'interval': 60,
+        'repeats': 0,
+        'desc': 'Weather Script',
+    },
+    "storagescript": {}
+}
+
+You should also define default LAT/LONG in the config
+
+DEFAULT_LATITUDE = 42.3555363911012
+DEFAULT_LONGITUDE = -71.06054679461245
+
+2. For the room, I created a modified version of the contrib ExtendedRoom that has the added weather info. You can display weather one of three ways:
+
+   a. Default
+
+	.----------------> Weather <----------------------------------------------------------.
+	|   Current: Monday, June 17, 2024 - 02:50:57 PM                Boston, MA            |
+	'-----------------------------------------------------.-------------------------------'
+	|  Snapshot: Monday, June 17, 2024 - 02:50:28 PM      |                                
+	'-----------------------------------------------------'                                
+
+    b. Outside weather (non-Earth), excluding moon and sun data
+
+	location.tags.add("outside", category="location")
+        
+       Without a roomzone, the weather will display the data under default. To use a different weather dataset, you can specify
+       a roomzone.
+
+       @tag room=<zone>:RoomZone
+
+       Then you will also need to add a new dict to the global weather script, with a different LAT/LONG
+
+       @py from evennia import GLOBAL_SCRIPTS; w=GLOBAL_SCRIPTS.weather_script; w.db.weather_zones = [{'zone_name': '<zone>', 'latitude': ##.####, 'longitude': ##.####}]
+
+	.----------------> Weather <----------------------------------------------------------.
+	|   Current: Monday, June 17, 2024 - 02:55:31 PM                 Boston, MA           |
+	'--------------------------------------------------.----------------------------------'
+	| Conditions       : Partly Sunny                  |                                  |
+	| Wind Speed       : 15 mph, S                     | Temperature  :  83.0^F  28.3^C   |
+	| Chance of Rain   : None %                        | Dew Point    :  41.0^F  16.1^C   |
+	| Relative Humidity: 52 %                          |                                  |
+	'--------------------------------------------------'----------------------------------'
+	| Tonight                                                            68.0^F  20.0^C   |
+	|   Partly Cloudy                                                                     |
+	'-------------------------------------------------------------------------------------'
+	| Tuesday                                                            94.0^F  34.4^C   |
+	|   Mostly Sunny                                                                      |
+	'-------------------------------------------------------------------------------------'
+	| Tuesday Night                                                      70.0^F  21.1^C   |
+	|   Mostly Clear                                                                      |
+	'-------------------------------------------------------------------------------------'
+	|  Snapshot: Monday, June 17, 2024 - 02:55:29 PM      |                                
+	'-----------------------------------------------------'                                
+
+        I have the command displaying three forcast data sets, but the API provides about a
+        dozen, so you could list as far ahead as a week if you want. The City/State is only
+        visible to users with the "Developer" permission (I added it to remind myself where
+        the displayed dataset is coming from).
+
+    c. Outside weather (Earth), including moon and sun data
+
+	location.tags.add("Earth", category="location")
+
+	In this case, the dataset will also include sun_data and moon_data
+
+	.----------------> Weather <----------------------------------------------------------.
+	|   Current: Monday, June 17, 2024 - 03:01:35 PM                 Boston, MA           |
+	'--------------------------------------------------.----------------------------------'
+	| Conditions       : Partly Sunny                  |                                  |
+	| Wind Speed       : 15 mph, S                     | Temperature  :  83.0^F  28.3^C   |
+	| Chance of Rain   : None %                        | Dew Point    :  41.0^F  16.1^C   |
+	| Relative Humidity: 52 %                          |                                  |
+	'--------------------------------------------------'----------------------------------'
+	| Tonight                                                            68.0^F  20.0^C   |
+	|   Partly Cloudy                                                                     |
+	'-------------------------------------------------------------------------------------'
+	| Tuesday                                                            94.0^F  34.4^C   |
+	|   Mostly Sunny                                                                      |
+	'-------------------------------------------------------------------------------------'
+	| Tuesday Night                                                      70.0^F  21.1^C   |
+	|   Mostly Clear                                                                      |
+	'-------------------------------------------------------------------------------------'
+	| Sun Information           | Moon Information                                        |
+	|                           |                                                         |
+	| Sunrise    : 5:05:18 AM   | Moon : Honey Moon      Phase       : Waxing Gibbous     |
+	| Noon       : 12:45:20 PM  | Age  : 10.6 days       Distance    : 400584.9 mil       |
+	| Sunset     : 8:25:22 PM   | Angle: 0.50 deg        Illumination: 0.82 %             |
+	| Day Length : 15:20:04     |                                                         |
+	'---------------------------'---------------------------------------------------------'
+	|  Snapshot: Monday, June 17, 2024 - 03:01:28 PM      |                                
+	'-----------------------------------------------------'                                
+
+  For the random messages, I have them set up so you can define them in one of three ways:
+
+    1. Just four seasons: summer, winter, spring, autumn, sunrise, sunset
+
+    2. Four seasons with time of day: summer.morning, spring.night, winter.afternoon
+
+    3. Four seasons, time of day, and weather: summer.afternoon.mostlycloudy, autumn.showersandthunderstorms
+
+    and you can also do just weather, timeofday, or season.weather....
+
+    The script them assembles a big list from all the variations you include and picks a message from 
+    that big list. 
+
+    Possible weather conditions from the API
+
+	chancerainshowers
+	chanceshowersandthunderstorms
+	clear
+	isolatedrainshowers
+	isolatedshowersandthunderstorms
+	mostlyclear
+	mostlycloudy
+	mostlysunny
+	partlycloudy
+	partlysunny
+	rainshowers
+	rainshowerslikely
+	scatteredrainshowers
+	scatteredshowersandthunderstorms
+	showersandthunderstormslikely
+	showersandthunderstorms
+	slightchancerainshowers
+	slightchanceshowersandthunderstorms
+	sunny
+        (I assume there are also snow messages, but the api does not return those now as its summer)
+
+
+   You can define this list at the bottom of the scripts.py file.
+
+    weather_messages = {
+        'sunrise': [
+            "The sun casts a warm glow over the land.",
+            "Welcome the dawn, where new beginnings unfold beneath the gentle embrace of the rising sun.",
+        ],
+        'summer.evening': [
+            "A few more clouds begin to cover the moon in the darkening sky, casting eerie images over the ground.",
+            "A symphony of crickets accompanies the vivid sunset, painting the sky with hues of orange and pink over the tranquil horizon.",
+        ],
+        'summer.night.mostlycloudy': [
+            "Despite the cloud cover, the occasional break reveals a glimmering tapestry of stars above, lending a mystical aura to the serene night.",
+        ],
+
+    }
+
+   The script cycles through all of the rooms have 'outside' (category='location) and 
+   displays a message at a random interval based on MESSAGE_FREQUENCY (rand 0-MESSAGE_FREQUENCY)
+   for each room. If you set MESSAGE_FREQUENCY to zero, it will stop all messages displayed
+   to rooms.
+
+
+
+
+  
+
+
+
+
+
+       
+
+

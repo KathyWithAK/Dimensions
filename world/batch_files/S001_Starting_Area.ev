@@ -1,0 +1,271 @@
+# Starting Area for Dimensions : creation batch file
+# This batch file sets up the starting Area
+#
+# To load the file, use: @batchcommand world.batch_files.S001_Starting_Area
+# 	 
+#   Get list of rooms in Zone:
+#     import evennia
+#     rooms = evennia.search_tag("Orbital_Relay_Station", category="AreaZone")
+#	  self.msg(rooms)
+#
+#
+##############
+# Setup Yoshie character
+##############
+#
+@name #3=|cY|ro|cS|rh|cI|re|n;yoshie
+#
+@set #3/desc=Her scales shimmer with a radiant cyan hue, reminiscent of clear tropical waters on a sunny day. This vibrant coloration is accentuated by bold streaks of fiery red, swirling across her body like streaks of molten lava. The contrast between the cool cyan and the fiery red creates a mesmerizing visual spectacle, ensuring that she is always the center of attention. Adorning Yoshi's back is a sturdy saddle, crafted from the finest materials found in the Yoshi kingdom. The saddle boasts intricate designs, reminiscent of ancient tribal patterns, etched into its surface with remarkable precision. The vibrant colors of the saddle perfectly complement Yoshi's own striking appearance, adding an extra layer of flair to their ensemble.
+#
+@set #3/caption=is blazing trails with style and grace
+#
+##############
+# Setup god character
+##############
+#
+@set #1/desc=Draped in robes woven from the fabric of time itself, this enigmatic figure exudes an aura of majesty and mystery. Adorning their form is a bag brimming with artifacts of divine origin, each imbued with the essence of creation and destruction. With a mere glance, they can shape the very fabric of reality to their will. Yet, their most prized possession is a tome of boundless knowledge, its cover adorned with celestial symbols and glyphs. Aptly titled "Cosmos Chronicles: Tales of Creation," this book serves as both a repository of cosmic wisdom and a tool for crafting new worlds and destinies. 
+#
+@set #1/caption=is floating just above the ground
+#
+##############
+# Setup Starting area
+##############
+#
+@name here=Cryo-Sleep Chamber;chamber;cryo
+#
+typeclass here=typeclasses.myextendedroom.MyExtendedRoom
+#
+@tag here=Luna_Base_Alpha:AreaZone
+#
+@set here/caption = Luna Base Alpha
+#
+@set here/desc=The chamber is graced by a dozen sleek sleep pods, neatly arranged across the floor. Some are sealed shut, pristine in their design, while others stand open, inviting exploration. Within the operational pods, a tranquil atmosphere pervades, hinting at the peaceful slumber of their occupants. The room is bathed in a soft, gentle glow, courtesy of strategically placed lighting fixtures. Shadows play delicately against the walls, adding an air of mystery to the serene ambiance. Overall, the space exudes an aura of comfort and tranquility, inviting visitors to rest and recharge amidst its calming embrace.
+#
+@set here/desc_damaged=The chamber is dominated by a dozen sleep pods, scattered haphazardly across the floor. Some of these pods stand intact, their sleek surfaces marred only by the passage of time, while others lie broken and damaged, their glass canopies shattered and circuits exposed to the dim, flickering lights above. Within the functioning pods, there is an eerie sense of suspended animation, as if time itself has frozen within these chambers. The occupants, if any, are long gone, leaving behind only the faint imprint of their presence etched into the cold metal surfaces. The room is shrouded in darkness, illuminated only by the intermittent glow of malfunctioning control panels and the faint, distant light filtering in through fractured windows. Shadows dance across the walls, casting strange and unsettling shapes that seem to shift and twist with each passing moment.
+#
+roomstate damaged
+#
+@dig |bSpace|n;space: space.typeclasses.spaceroom.SpaceRoom
+#
+@create |bDamaged Cryo-Pod|n;pod
+#
+drop pod
+#
+@set pod/desc=You come across an empty cryo-pod within the damaged confines of the orbital relay station. The cryo-pod, once a vessel for suspended animation, now stands as a haunting relic of the station's past. Its exterior is marred by scratches and scorch marks, evidence of the chaos that once unfolded within these walls. The cryo-pod's glass canopy is cracked and fogged, obscuring the interior from view. Wires dangle haphazardly from its control panel, sparks occasionally dancing along their frayed ends. A chill permeates the air around the cryo-pod, a ghostly reminder of the cryogenic temperatures it once maintained. Inside, the pod's interior is barren and desolate, devoid of any signs of life. The mattress within is torn and tattered, its surface stained with old blood and other unidentifiable substances. The control panel flickers weakly, its display frozen on an ominous countdown timer.
+#
+@set pod/caption=is anchored to a nearby wall
+#
+@set pod/get_err_msg=You try to lift it, but the pod appears to be bolted firmly to the floor.
+#
+@lock dan=pod:false()
+#
+@dig Corridor:typeclasses.myextendedroom.MyExtendedRoom=<C>orridor;c,<C>ryo-Sleep;c
+#
+c
+#
+@tag here=Luna_Base_Alpha:AreaZone
+#
+@set here/caption = Luna Base Alpha
+#
+@set here/desc=As you step into this softly illuminated corridor, the air carries a faint hum of activity, with a hint of the metallic tang typical of well-maintained machinery. The hallway stretches gracefully before you, its surfaces polished and gleaming, reflecting the ambient light in gentle waves. Cables neatly line the ceiling, contributing to the organized aesthetic of the passageway. Doors punctuate the walls at regular intervals, each one pristine and unblemished, adorned with sleek handles and unmarred surfaces. Some doors stand open invitingly, while others remain closed, their contents safely secured behind sturdy metal frames.
+#
+@set here/desc_damaged=As you step into this dimly lit corridor, the air is heavy with the scent of decay and neglect, the metallic tang of aged machinery lingering in the stale atmosphere. The hallway stretches out before you, its once gleaming surfaces now tarnished and corroded by the relentless passage of time. Wires dangle from the ceiling like tendrils of forgotten memories, their frayed ends sparking sporadically in the dim light. Several doors line the walls of the hallway, their surfaces pockmarked with dents and scratches, a testament to the violence and chaos that once consumed this desolate vessel. Some doors hang ajar, their hinges creaking in protest as they sway gently in the stagnant air, while others remain firmly sealed, their secrets hidden behind layers of reinforced metal.
+#
+roomstate damaged
+#
+@dig Docking Bay:typeclasses.myextendedroom.MyExtendedRoom=<D>ocking Bay;d,<C>orridor;c
+#
+d 
+#
+@tag here=Luna_Base_Alpha:AreaZone
+#
+@set here/caption = Luna Base Alpha
+#
+@set here/desc=You are in the small docking bay of the orbital relay station, a cavernous chamber that now lies silent and abandoned amidst the vastness of space. As you cautiously step into this dimly lit bay, the air is heavy with the scent of metal and machinery, a lingering reminder of the activity that once thrived within its walls. The bay is small and cramped, its metal walls scarred by years of wear and tear, a testament to the harsh conditions of space. A lone docking port stands empty, its retractable arms poised in anticipation of a ship's arrival, but no vessel graces its berth. The floor of the bay is littered with debris and detritus, remnants of past visits and abandoned equipment. A sense of foreboding hangs in the air, a lingering reminder of the dangers that lurk beyond the safety of the station's walls. As you explore the bay, the occasional flicker of emergency lighting casts eerie shadows along the walls, adding to the sense of desolation and isolation. Despite the emptiness, the docking bay remains a vital lifeline for those who dare to brave the unforgiving expanse of space.
+#
+@set here/desc_damaged=You find yourself in the small docking bay of the orbital relay station, a once bustling hub that now lies desolate and forgotten amidst the vast emptiness of space. As you cautiously step into this dimly lit bay, the air is thick with the stench of decay and neglect, a stark contrast to the bustling activity that once filled its corridors. The bay, now a shadow of its former self, is cramped and claustrophobic, its metal walls pockmarked and scarred by years of neglect and abuse. A lone docking port stands abandoned, its retractable arms frozen in place, a silent testament to the absence of any incoming vessels. The floor of the bay is strewn with debris and wreckage, a chaotic jumble of discarded equipment and broken machinery. A sense of unease settles over you as you navigate the cluttered space, a constant reminder of the dangers that lurk beyond the station's crumbling walls. As you explore further, the occasional flicker of failing emergency lighting casts eerie shadows along the walls, adding to the sense of desolation and despair that permeates the bay.
+#
+roomstate damaged
+#
+c 
+#
+@dig Corridor:typeclasses.myextendedroom.MyExtendedRoom=<A>ft;a,<F>orward;f 
+#
+a 
+#
+@tag here=Luna_Base_Alpha:AreaZone
+#
+@set here/caption = Luna Base Alpha
+#
+@set here/desc=As you step into this softly illuminated corridor, the air carries a faint hum of activity, with a hint of the metallic tang typical of well-maintained machinery. The hallway stretches gracefully before you, its surfaces polished and gleaming, reflecting the ambient light in gentle waves. Cables neatly line the ceiling, contributing to the organized aesthetic of the passageway. Doors punctuate the walls at regular intervals, each one pristine and unblemished, adorned with sleek handles and unmarred surfaces. Some doors stand open invitingly, while others remain closed, their contents safely secured behind sturdy metal frames.
+#
+@set here/desc_damaged=As you step into this dimly lit corridor, the air is heavy with the scent of decay and neglect, the metallic tang of aged machinery lingering in the stale atmosphere. The hallway stretches out before you, its once gleaming surfaces now tarnished and corroded by the relentless passage of time. Wires dangle from the ceiling like tendrils of forgotten memories, their frayed ends sparking sporadically in the dim light. Several doors line the walls of the hallway, their surfaces pockmarked with dents and scratches, a testament to the violence and chaos that once consumed this desolate vessel. Some doors hang ajar, their hinges creaking in protest as they sway gently in the stagnant air, while others remain firmly sealed, their secrets hidden behind layers of reinforced metal.
+#
+roomstate damaged
+#
+@dig Central Hub:typeclasses.myextendedroom.MyExtendedRoom=<C>entral Hub;c,<F>orward;f
+#
+c 
+#
+#
+#
+#
+@tag here=Luna_Base_Alpha:AreaZone
+#
+@set here/caption = Luna Base Alpha
+#
+@set here/desc=This is the bustling heart of the lunar space station, designed as the primary junction from which all major sections of the station are accessible. The room is spacious and circular, with a high ceiling featuring a large, transparent dome that offers a stunning panoramic view of the moon's surface and the distant Earth. Soft, ambient lighting fills the space, creating a warm and inviting atmosphere despite the coldness of space just outside. The walls are lined with sleek control panels and displays, providing real-time data on the station's status, external conditions, and communications with Earth. The central area is dominated by a large, holographic table that projects a three-dimensional map of the entire station, complete with flashing indicators showing areas of interest or concern. Comfortable seating areas are arranged in clusters around the perimeter of the room, allowing crew members to relax or hold informal meetings. Each seating area includes small tables with integrated screens, where users can access station information or communicate with other sections. The floor is made of a resilient, non-slip material designed to handle the high foot traffic of the station's crew. The air is clean and fresh, maintained by the station's advanced life support systems, and the constant hum of machinery is a reassuring reminder of the station's operational status.
+#
+@set here/desc_damaged=Once the bustling heart of the lunar space station, the room now stands as a haunting echo of its former vitality. The circular room, spacious and cavernous, is shrouded in darkness, with only occasional flickers of dim emergency lighting illuminating the desolate space. The high ceiling, once adorned with a large, transparent dome offering panoramic views, is now cracked and damaged, revealing patches of the void beyond. The walls, once adorned with sleek control panels and displays, are now covered in layers of dust and grime. Any remaining screens are dark and lifeless, their displays long since faded into oblivion. The central area, where the holographic table once stood, is now a barren expanse, littered with debris and discarded equipment. Comfortable seating areas, now tattered and torn, are scattered haphazardly around the perimeter of the room. The small tables, once equipped with integrated screens for communication and information access, are now broken and useless, their surfaces marred by scratches and scorch marks. The floor, once made of resilient, non-slip material, is now warped and uneven, with sections cracked and buckled from neglect and disuse. The air, once clean and fresh, now carries the stale stench of abandonment, mingled with the faint odor of decay. The constant hum of machinery is now a distant memory, replaced by eerie silence broken only by the occasional creaking of metal and the whisper of distant echoes.
+#
+roomstate damaged
+#
+@dig Corridor:typeclasses.myextendedroom.MyExtendedRoom=<A>ft;a,<C>entral Hub;c
+#
+a 
+#
+@tag here=Luna_Base_Alpha:AreaZone
+#
+@set here/caption = Luna Base Alpha
+#
+@set here/desc=As you step into this softly illuminated corridor, the air carries a faint hum of activity, with a hint of the metallic tang typical of well-maintained machinery. The hallway stretches gracefully before you, its surfaces polished and gleaming, reflecting the ambient light in gentle waves. Cables neatly line the ceiling, contributing to the organized aesthetic of the passageway. Doors punctuate the walls at regular intervals, each one pristine and unblemished, adorned with sleek handles and unmarred surfaces. Some doors stand open invitingly, while others remain closed, their contents safely secured behind sturdy metal frames.
+#
+@set here/desc_damaged=As you step into this dimly lit corridor, the air is heavy with the scent of decay and neglect, the metallic tang of aged machinery lingering in the stale atmosphere. The hallway stretches out before you, its once gleaming surfaces now tarnished and corroded by the relentless passage of time. Wires dangle from the ceiling like tendrils of forgotten memories, their frayed ends sparking sporadically in the dim light. Several doors line the walls of the hallway, their surfaces pockmarked with dents and scratches, a testament to the violence and chaos that once consumed this desolate vessel. Some doors hang ajar, their hinges creaking in protest as they sway gently in the stagnant air, while others remain firmly sealed, their secrets hidden behind layers of reinforced metal.
+#
+roomstate damaged
+#
+c 
+#
+@dig Corridor:typeclasses.myextendedroom.MyExtendedRoom=<P>ort;p,<C>entral Hub;c
+#
+p 
+#
+@tag here=Luna_Base_Alpha:AreaZone
+#
+@set here/caption = Luna Base Alpha
+#
+@set here/desc=As you step into this softly illuminated corridor, the air carries a faint hum of activity, with a hint of the metallic tang typical of well-maintained machinery. The hallway stretches gracefully before you, its surfaces polished and gleaming, reflecting the ambient light in gentle waves. Cables neatly line the ceiling, contributing to the organized aesthetic of the passageway. Doors punctuate the walls at regular intervals, each one pristine and unblemished, adorned with sleek handles and unmarred surfaces. Some doors stand open invitingly, while others remain closed, their contents safely secured behind sturdy metal frames.
+#
+@set here/desc_damaged=As you step into this dimly lit corridor, the air is heavy with the scent of decay and neglect, the metallic tang of aged machinery lingering in the stale atmosphere. The hallway stretches out before you, its once gleaming surfaces now tarnished and corroded by the relentless passage of time. Wires dangle from the ceiling like tendrils of forgotten memories, their frayed ends sparking sporadically in the dim light. Several doors line the walls of the hallway, their surfaces pockmarked with dents and scratches, a testament to the violence and chaos that once consumed this desolate vessel. Some doors hang ajar, their hinges creaking in protest as they sway gently in the stagnant air, while others remain firmly sealed, their secrets hidden behind layers of reinforced metal.
+#
+roomstate damaged
+#
+c 
+#
+@dig Corridor:typeclasses.myextendedroom.MyExtendedRoom=<S>tarboard;s,<C>entral Hub;c
+#
+s 
+#
+@tag here=Luna_Base_Alpha:AreaZone
+#
+@set here/caption = Luna Base Alpha
+#
+@set here/desc=As you step into this softly illuminated corridor, the air carries a faint hum of activity, with a hint of the metallic tang typical of well-maintained machinery. The hallway stretches gracefully before you, its surfaces polished and gleaming, reflecting the ambient light in gentle waves. Cables neatly line the ceiling, contributing to the organized aesthetic of the passageway. Doors punctuate the walls at regular intervals, each one pristine and unblemished, adorned with sleek handles and unmarred surfaces. Some doors stand open invitingly, while others remain closed, their contents safely secured behind sturdy metal frames.
+#
+@set here/desc_damaged=As you step into this dimly lit corridor, the air is heavy with the scent of decay and neglect, the metallic tang of aged machinery lingering in the stale atmosphere. The hallway stretches out before you, its once gleaming surfaces now tarnished and corroded by the relentless passage of time. Wires dangle from the ceiling like tendrils of forgotten memories, their frayed ends sparking sporadically in the dim light. Several doors line the walls of the hallway, their surfaces pockmarked with dents and scratches, a testament to the violence and chaos that once consumed this desolate vessel. Some doors hang ajar, their hinges creaking in protest as they sway gently in the stagnant air, while others remain firmly sealed, their secrets hidden behind layers of reinforced metal.
+#
+roomstate damaged
+#
+c 
+#
+p
+#
+@dig Research Lab:typeclasses.myextendedroom.MyExtendedRoom=<R>esearch Lab;r,<C>orridor;c 
+#
+r 
+#
+@tag here=Luna_Base_Alpha:AreaZone
+#
+@set here/caption = Luna Base Alpha
+#
+@set here/desc=The Research Lab is a sterile environment, filled with advanced scientific equipment and workstations. Specimens and samples from the lunar surface are carefully cataloged and stored here.
+#
+@set here/desc_damaged=The Research Lab is a sterile environment, filled with advanced scientific equipment and workstations. Specimens and samples from the lunar surface are carefully cataloged and stored here.
+#
+roomstate damaged
+#
+c 
+#
+c 
+#
+a 
+#
+@dig Hydroponics Bay:typeclasses.myextendedroom.MyExtendedRoom=<H>ydroponics Bay;h,<C>orridor;c 
+#
+h 
+#
+@tag here=Luna_Base_Alpha:AreaZone
+#
+@set here/caption = Luna Base Alpha
+#
+@set here/desc=A vital and vibrant part of the station, designed to cultivate plants in a controlled, soil-less environment. This expansive room is a sanctuary of green amidst the sterile surroundings of the lunar station. As you step inside, you are greeted by the sight of lush vegetation, with rows upon rows of plants growing in nutrient-rich solutions. The walls are lined with vertical gardening panels, maximizing the use of space by allowing plants to grow upwards. These panels are illuminated by a combination of soft, blue and red LED lights, providing the optimal light spectrum for photosynthesis. The ceiling is fitted with adjustable grow lights that simulate the natural light cycle, ensuring the plants receive the right amount of light throughout the day. The air is warm and humid, filled with the fresh, earthy scent of growing plants, providing a stark contrast to the dry, metallic atmosphere of the rest of the station. The gentle sound of trickling water and the hum of the hydroponic systems create a soothing, almost meditative ambiance. In the center of the bay, there is a large, circular water tank that serves as the heart of the hydroponic system. This tank is surrounded by a network of transparent tubes and pipes, through which nutrient-rich water flows, feeding the plants. Floating rafts support a variety of leafy greens and herbs, their roots submerged in the nutrient solution.
+#
+@set here/desc_damaged=Once a vital and vibrant part of the station, the Hydroponics Bay now stands as a decayed relic of its former self, designed to cultivate plants in a controlled, soil-less environment. This expansive room, once a sanctuary of green amidst the sterile surroundings of the lunar station, is now a scene of desolation. As you step inside, you are greeted by the sight of wilted, overgrown vegetation, with rows upon rows of dying plants barely clinging to life in stagnant, nutrient-depleted solutions. The walls, lined with vertical gardening panels, are now covered in creeping vines and mold. The once-bright blue and red LED lights flicker sporadically, many of them completely dark, failing to provide the optimal light spectrum for photosynthesis. The ceiling's adjustable grow lights are dim and malfunctioning, casting eerie shadows and an intermittent, ghostly glow. The air is damp and musty, filled with the unpleasant scent of decay and rotting vegetation, providing a stark contrast to the dry, metallic atmosphere of the rest of the station. The gentle sound of trickling water has been replaced by the erratic drips of leaking pipes, and the once soothing hum of the hydroponic systems is now a disconcerting mix of gurgles and mechanical groans. In the center of the bay, the large, circular water tank that once served as the heart of the hydroponic system is now a murky, algae-choked pool. The network of transparent tubes and pipes is clogged and cracked, with nutrient-rich water barely trickling through to the dying plants. Floating rafts, once supporting a variety of leafy greens and herbs, are now covered in a tangle of roots and decaying plant matter.
+#
+roomstate damaged
+#
+c 
+#
+c 
+#
+s 
+#
+@dig Storage Bay:typeclasses.myextendedroom.MyExtendedRoom=<S>torage Bay;s,<C>orridor;c
+#
+s 
+#
+@tag here=Luna_Base_Alpha:AreaZone
+#
+@set here/caption = Luna Base Alpha
+#
+@set here/desc=A vast, cavernous room designed to hold a variety of supplies and equipment essential for the station's operations. The walls are lined with towering shelves filled with crates, containers, and various pieces of equipment, all meticulously labeled and organized. The ceiling is high, with industrial lighting fixtures casting a bright, sterile light over the entire area, ensuring every corner is well-illuminated. The floor is made of durable metal plating, designed to withstand heavy loads and constant traffic. The air is cool and carries a faint scent of metal and machinery. The hum of ventilation systems and the occasional clang of metal can be heard, adding to the industrial atmosphere. In the center of the bay, there is a large open space with several automated forklifts and robotic arms that move along tracks embedded in the floor and ceiling, efficiently transporting items to and from storage. A central control terminal stands near the entrance, displaying inventory lists and allowing users to request specific items or log new supplies.
+#
+@set here/desc_damaged=Once a vast, cavernous room designed to hold a variety of supplies and equipment essential for the station's operations, now stands as a grim testament to the station's abandonment. The towering shelves that line the walls are filled with crates and containers, many of which are now coated in layers of dust and grime. The meticulous labels have faded, and some containers have toppled over, spilling their contents across the floor. The ceiling is high, but the industrial lighting fixtures are either dark or flickering intermittently, casting erratic shadows and leaving large portions of the room in dim gloom. The once-durable metal plating of the floor is now scuffed and dented, with signs of rust and corrosion spreading like a disease. The air is cool but stale, carrying a pungent scent of decay and neglect mingled with the faint, lingering odor of metal and machinery. The hum of ventilation systems is now an irregular, disconcerting noise, punctuated by the occasional, eerie clang of metal echoing through the vast space. In the center of the bay, the open space is littered with the remains of automated forklifts and robotic arms, now frozen in time and partially dismantled. Their tracks are clogged with debris, rendering them useless. A central control terminal stands near the entrance, its screen cracked and dark, with only the occasional flicker of static hinting at its former functionality.
+#
+roomstate damaged
+#
+c 
+#
+@dig Corridor:typeclasses.myextendedroom.MyExtendedRoom=<A>ft;a,<F>orward;f 
+#
+a 
+#
+@tag here=Luna_Base_Alpha:AreaZone
+#
+@set here/caption = Luna Base Alpha
+#
+@set here/desc=As you step into this softly illuminated corridor, the air carries a faint hum of activity, with a hint of the metallic tang typical of well-maintained machinery. The hallway stretches gracefully before you, its surfaces polished and gleaming, reflecting the ambient light in gentle waves. Cables neatly line the ceiling, contributing to the organized aesthetic of the passageway. Doors punctuate the walls at regular intervals, each one pristine and unblemished, adorned with sleek handles and unmarred surfaces. Some doors stand open invitingly, while others remain closed, their contents safely secured behind sturdy metal frames.
+#
+@set here/desc_damaged=As you step into this dimly lit corridor, the air is heavy with the scent of decay and neglect, the metallic tang of aged machinery lingering in the stale atmosphere. The hallway stretches out before you, its once gleaming surfaces now tarnished and corroded by the relentless passage of time. Wires dangle from the ceiling like tendrils of forgotten memories, their frayed ends sparking sporadically in the dim light. Several doors line the walls of the hallway, their surfaces pockmarked with dents and scratches, a testament to the violence and chaos that once consumed this desolate vessel. Some doors hang ajar, their hinges creaking in protest as they sway gently in the stagnant air, while others remain firmly sealed, their secrets hidden behind layers of reinforced metal.
+#
+roomstate damaged
+#
+@dig Observation Deck:typeclasses.myextendedroom.MyExtendedRoom=<O>bservation Deck;o,<C>orridor;c 
+#
+o 
+#
+@tag here=Luna_Base_Alpha:AreaZone
+#
+@set here/caption = Luna Base Alpha
+#
+@set here/desc=A breathtaking blend of advanced virtual reality technology and stunning real-time lunar imagery, designed to offer crew members and visitors an unparalleled experience of observing the moon and space. As you step inside, the room’s walls, ceiling, and floor dissolve into a seamless 360-degree panorama, creating the illusion of standing on a transparent platform suspended in space. The simulation displays an accurate and dynamic representation of the lunar surface below, with craters, mountains, and vast plains stretching out in stark, monochromatic beauty. Above, the blackness of space is dotted with countless stars, and the distant Earth is visible as a vibrant blue and green sphere, rotating slowly in the void. The room is equipped with several comfortable reclining chairs arranged in a semi-circle facing the best views. These chairs are outfitted with interactive armrests that allow users to zoom in on specific lunar features, track celestial bodies, and access detailed information overlays about what they are observing.
+#
+@set here/desc_damaged=Once a breathtaking blend of advanced virtual reality technology and stunning real-time lunar imagery, this room now stands as a haunting relic of its former glory. As you step inside, the room's walls, ceiling, and floor flicker intermittently, struggling to maintain the once seamless 360-degree panorama. The illusion of standing on a transparent platform suspended in space is shattered by glitches and static, revealing the cracked and worn panels beneath. The simulation, though deteriorated, still attempts to display the lunar surface below. Craters, mountains, and vast plains appear sporadically, interrupted by digital noise and corrupted visuals. The blackness of space, dotted with countless stars, is now a mix of eerie silence and occasional bursts of light. The distant Earth, a vibrant blue and green sphere, intermittently appears and vanishes, its image distorted and ghostly. The room is equipped with several reclining chairs, once comfortable but now worn and tattered, arranged in a semi-circle facing the best views.
+#
+roomstate damaged
+#
+@tel docking bay 
+#
+@py from world.space.models import SpaceDB; luna = SpaceDB.objects.filter(db_key__exact='lunabasealpha'); luna[0].db_dock_room=self.location.id;luna[0].save()
+#
+@tel observation deck
+#
+@create Trans-Mat Pad;transmat:space.typeclasses.ship_transmat.ShipTransmat
+#
+drop transmat 
+#
+@py from world.space.models import SpaceDB; luna = SpaceDB.objects.filter(db_key__exact='lunabasealpha'); obj=self.search("transmat"); luna[0].db_transmat=obj.id;luna[0].save()
+#
+@tel docking bay 
+#
+# End in room #9

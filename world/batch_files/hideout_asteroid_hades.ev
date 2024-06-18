@@ -1,0 +1,87 @@
+# NMV Sulaco : Ship creation batch file
+# This batch file sets up the NMV Sulaco combat zone
+#
+# To load the file, use: @batchcommand world.batch_files.hideout_asteroid_hades
+                         @batchcommand/interactive world.batch_files.hideout_asteroid_hades
+# 	 
+#   Get list of rooms in Zone:
+#     import evennia
+#     rooms = evennia.search_tag("AsteroidHades", category="RoomZone")
+#	  self.msg(rooms)
+#
+@dig Corsair Cove;starhaven_01:typeclasses.myextendedroom.MyExtendedRoom
+#
+@tel starhaven_01
+#
+@tag here=AsteroidHades:RoomZone
+#
+@set here/caption=Hades
+#
+@set here/desc=A cavernous chamber with high ceilings, designed to accommodate a variety of spacecraft. The walls are lined with maintenance bays and storage for contraband and supplies. The bay is dimly lit, with shadows cast by flickering lights, creating an ominous atmosphere. A large reinforced airlock provides entry and exit for ships, ensuring the bay remains pressurized. The floor is a mix of metal plating and asteroid rock, worn smooth by countless arrivals and departures.
+#
+@detail marks=Scorch marks and battle scars from previous skirmishes.
+#
+# Connect the dock room to Asteroid_Hades
+@py from world.space.models import SpaceDB; obj=SpaceDB.objects.filter(db_key__exact='hades'); obj[0].db_dock_room=self.location.id; obj[0].save()
+#
+@dig Main Corridor;starhaven_02:typeclasses.myextendedroom.MyExtendedRoom=<C>orridor;c,<D>ocking Bay;d 
+#
+c 
+#
+@tag here=AsteroidHades:RoomZone
+#
+@set here/caption=Hades
+#
+@set here/desc=The central artery of the hideout, stretching the length of the asteroid's interior. It's a narrow, dimly lit passage with a metallic floor that echoes with each step. The walls are decorated with stolen banners and trophies from various raids. Flickering overhead lights and exposed pipes running along the ceiling add to the gritty ambiance. This corridor sees the most foot traffic, with pirates frequently passing through to various parts of the base.
+#
+@detail graffiti=The walls are covered with graffiti and carved messages from past and present crew members.
+#
+@dig Armory;starhaven_03:typeclasses.myextendedroom.MyExtendedRoom=<A>rmory;a,<C>orridor;c
+#
+a 
+#
+@tag here=AsteroidHades:RoomZone
+#
+@set here/caption=Hades
+#
+@set here/desc=A heavily fortified room filled with an impressive array of weapons and equipment. Shelves and racks hold everything from blasters and grenades to body armor and energy shields. The room is secured with biometric locks, ensuring only authorized personnel can access the arsenal. A workbench in one corner is strewn with tools and weapon parts, where modifications and repairs are carried out. The air smells faintly of gunpowder and metal.
+#
+c 
+#
+@dig Command Center;starhaven_04:typeclasses.myextendedroom.MyExtendedRoom=<CO>mmand Center;co,<C>orridor;c
+#
+co 
+#
+@tag here=AsteroidHades:RoomZone
+#
+@set here/caption=Hades
+#
+@set here/desc=The strategic heart of the hideout, bristling with advanced technology and communication equipment. A large central table projects holographic maps and tactical readouts. Various consoles and screens line the walls, displaying ship status, security feeds, and incoming transmissions. The room is often filled with the hum of machinery and the chatter of the crew planning their next move. The commander's chair is elevated, providing a clear view of all operations.
+#
+@create Trans-Mat Pad;transmat:space.typeclasses.ship_transmat.ShipTransmat
+#
+drop transmat 
+#
+# Connect the transmat to Asteroid_Hades
+@py t=self.search("transmat"); import evennia; from world.space.models import SpaceDB; h = SpaceDB.objects.filter(db_key__exact='hades'); h[0].db_transmat=t.id; h[0].save()
+#
+@dig Living Quarters;starhaven_05:typeclasses.myextendedroom.MyExtendedRoom=<LI>ving Quarters;li,<CO>mmand Center;co
+#
+li 
+#
+@tag here=AsteroidHades:RoomZone
+#
+@set here/caption=Hades
+#
+@set here/desc=A series of interconnected rooms and bunks where the crew rests and socializes. Each bunk has a privacy curtain, a small storage compartment, and a charging port for personal devices. The common area features a makeshift kitchen, a holographic gaming table, and worn but comfortable seating. Personal effects and mementos are scattered around, giving the space a lived-in feel. The walls are adorned with posters and keepsakes from various planets.
+#
+@dig Medical Bay;starhaven_06:typeclasses.myextendedroom.MyExtendedRoom=<M>edical Bay;m,<LI>ving Quarters;li
+#
+m 
+#
+@tag here=AsteroidHades:RoomZone
+#
+@set here/caption=Hades
+#
+@set here/desc=A sterile, well-equipped room designed to handle everything from minor injuries to major surgeries. Medpods and diagnostic scanners line one wall, while cabinets stocked with medical supplies and drugs fill another. The central operating area is clean and brightly lit, contrasting with the rest of the hideout's rugged aesthetic. A robotic assistant helps the chief medic with treatments and procedures. The room is often busy, as pirate life is fraught with danger.
+#

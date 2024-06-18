@@ -1,0 +1,624 @@
+# NMV Sulaco : Ship creation batch file
+# This batch file sets up the NMV Sulaco combat zone
+#
+# To load the file, use: @batchcommand world.batch_files.S002_Ship_NMV_Sulaco
+                         @batchcommand/interactive world.batch_files.Ship_NMV_Sulaco
+# 	 
+#   Get list of rooms in Zone:
+#     import evennia
+#     rooms = evennia.search_tag("NMV_Sulaco", category="RoomZone")
+#	  self.msg(rooms)
+#
+#  You will also need a "Ship" object to link to: 
+#     @create Ship:space.typeclasses.ship.Ship
+#
+#                                                 [ 25 ]  [ 33 ]--[ 31 ]--[ 32 ]
+#                                                   ||              ||
+#         [ 03 ]  [ 06 ]  [ 10 ]  [ 12 ]--[ 23 ]--[ 24 ]--[ 29 ]--[ 30 ]
+#           ||      ||      ||      ||              || 
+# [ 01 ]--[ 02 ]--[ 05 ]--[ 19 ]--[ 11 ]  [ 27 ]--[ 26 ]--[ 28 ]  [ 19 ]    N. M. V. Sulaco
+#           ||      ||              ||                              ||      Colonial Marines
+#         [ 04 ]  [ 07 ]--[ 08 ]  [ 13 ]--[ 14 ]--[ 15 ]--[ 17 ]--[ 18 ]
+#                                                   ||              ||
+#                                                 [ 16 ]  [ 21 ]--[ 20 ]--[ 22 ]
+# 
+# url map: https://cm-ss13.com/wiki/User:TopHatPenguin#/media/File:Sulaco.png
+#
+@dig Rear Airlock <Sec 3>;sulaco_1:typeclasses.myextendedroom.MyExtendedRoom
+#
+@tel sulaco_1
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=As you step into this utilitarian space, the air is heavy with the scent of metal and machinery, with a hint of recycled air tinged with ozone. The room is dominated by a massive airlock mechanism, its heavy doors sealed shut against the vacuum of space. Red emergency lights cast a eerie glow, illuminating the sterile surroundings with an ominous hue. Rows of lockers and equipment racks line the walls, containing spacesuits, helmets, and other gear essential for extravehicular activities. Everything is meticulously organized, a testament to the disciplined nature of the crew who call this starship home.
+#
+@set here/desc_damaged=As you cautiously step into this utilitarian space, the air is thick with the scent of metal and machinery, tinged with the stale odor of neglect. The room bears the scars of past damage, with jagged metal edges and exposed wiring marring its once pristine surfaces. The massive airlock mechanism dominates the chamber, its heavy doors hanging askew and battered from years of wear and tear. Dim emergency lights flicker sporadically, casting eerie shadows that dance across the dilapidated surroundings. Rows of lockers and equipment racks line the walls, their surfaces dented and scratched from countless impacts. Within, spacesuits and helmets hang haphazardly, some torn and damaged beyond repair. The gear, once meticulously organized, now lies in disarray, a stark contrast to the disciplined nature of the crew who once called this derelict starship home. Despite the chaos and decay that now reigns supreme, hints of the ship's former functionality remain. Tools and supplies litter the floor, remnants of past efforts to repair and maintain the vessel. Amidst the wreckage, a sense of history and resilience lingers, a testament to the indomitable spirit of those who once traversed the stars aboard this now-forgotten craft.
+#
+roomstate damaged
+#
+@dig Corridor <Sec 3>;sulaco_2:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yC|Y>|yorridor;c,|Y<|yA|Y>|yirlock;a
+#
+c 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=As you step into this dimly lit passageway, the air is cool and still, with the faint hum of machinery echoing in the distance. The corridor stretches out before you, its metallic walls adorned with maintenance hatches and access panels. Emergency lighting casts a soft glow along the floor, guiding the way through the labyrinthine network of hallways. Doors line the walls at regular intervals, each one leading to a different area of the ship. To port, a reinforced door marked "Robotics" stands ready to grant access to the ship's automated systems and maintenance drones. Aft, a heavy blast door labeled "Rear Airlock" offers a direct route to the exterior of the ship, allowing for extravehicular activities and emergency evacuations. Further down the corridor, another door bears the inscription "Research," hinting at the scientific endeavors and experiments being conducted. 
+#
+@set here/desc_damaged=As you cautiously step into this dimly lit passageway, the air is thick with dust and silence, a stark contrast to the faint echoes of machinery that reverberate in the distance. The corridor stretches out before you, its once gleaming metallic walls now marred by cracks and dents, adorned with rust and decay. Emergency lighting flickers intermittently, casting a feeble glow along the floor, struggling to illuminate the desolate scene. Doors hang askew on their hinges at irregular intervals, some barely clinging to their frames. To port, a battered and partially collapsed entrance marked "Robotics" stands as a testament to the ship's neglected state, offering a glimpse into the remnants of its automated systems and maintenance drones. To your aft, a once sturdy blast door, now warped and twisted from years of neglect, bears the faded label "Rear Airlock," its mechanism likely corroded beyond use, rendering it useless for any extravehicular activities or emergency evacuations. Further down the corridor, another door, barely recognizable beneath layers of grime and debris, bears the barely legible inscription "Research," a haunting reminder of the scientific endeavors and experiments that once thrived aboard this forsaken vessel.
+#
+roomstate damaged
+#
+@dig Robotics <Sec 3>;sulaco_3:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yRO|Y>|ybotics;ro,|Y<|yC|Y>|yorridor;c
+#
+ro
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=As you step into this meticulously organized space, the air is cool and sterile, with the faint hum of machinery filling the air. Rows of computer terminals line the walls, each one displaying intricate schematics and diagnostic readouts of the ship's robotic workforce. A central workstation dominates the room, its array of monitors and control panels standing ready to oversee the operation of the ship's drones and automated systems. In the center of the room, a series of robotic arms hang suspended from the ceiling, their intricate mechanisms glistening in the soft glow of overhead lights. These arms are used for delicate repairs and maintenance tasks, their precision and dexterity unmatched by human hands. Shelving units line the walls, stocked with spare parts, tools, and equipment essential for keeping the ship's robotic workforce in peak operating condition.
+#
+@set here/desc_damaged=As you cautiously step into this once meticulously organized space, the air is heavy with the scent of stale coolant and neglect, the faint hum of malfunctioning machinery a haunting echo of its former efficiency. Rows of computer terminals, now flickering sporadically, line the walls, their screens displaying fragmented schematics and erratic diagnostic readouts of the ship's derelict robotic workforce. A central workstation, once a hub of activity and control, now sits abandoned and covered in a layer of dust, its array of monitors and control panels cracked and shattered, remnants of a bygone era. In the center of the room, a series of robotic arms hang limp from the ceiling, their once intricate mechanisms now rusted and lifeless, casting eerie shadows in the dim light. Shelving units that once held neatly organized spare parts and tools now lie in disarray, their contents strewn haphazardly across the floor. Broken components and debris litter the room, a testament to the chaos and destruction that has befallen this once vital chamber of the ship.
+#
+roomstate damaged
+#
+#
+####################
+# Tom Servo
+####################
+#
+@create |yTom|g-|yServo|n;tom;tom-servo:combat.typeclasses.mob.Mob
+#
+@set tom/desc=A small, wisecracking robot with a distinctive golden dome-shaped head. His appearance is reminiscent of a gumball machine, with his head serving as the "dispenser" for humorous quips and witty commentary on the movies featured in the show. He is known for his sharp wit, pop culture references, and penchant for breaking into song during movie intermissions. Despite his robotic nature, Tom exhibits a wide range of emotions and has a playful and sometimes mischievous personality.
+#
+@set tom/caption=is doing his best comically inaccurate impersonation
+#
+drop tom
+#
+mob/on tom
+#
+####################
+#
+c 
+#
+@dig Engineering <Sec 3>;sulaco_4:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yE|Y>|yngineering;e,|Y<|yC|Y>|yorridor;c
+#
+e
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=As you step into this sterile chamber, the air is filled with the faint hum of equipment and the soft glow of monitors lining the walls. Rows of computer terminals and scientific instruments fill the room, each one poised to collect and analyze data from the far reaches of space. Screens display complex equations and diagrams, while holographic displays project three-dimensional models of alien artifacts and specimens. In the center of the room, a secure containment chamber stands ready to house and study any extraterrestrial samples recovered during the ship's missions. Thick blast-proof glass separates the chamber from the rest of the room, ensuring the safety of the crew while allowing for detailed observation of potentially hazardous materials. Shelving units line the walls, stocked with reference materials, research journals, and specimens collected from previous missions.
+#
+@set here/desc_damaged=As you cautiously step into this once sterile chamber, the air is heavy with the scent of decay and neglect, the faint hum of malfunctioning equipment a mournful dirge to its former purpose. Rows of computer terminals and scientific instruments, now covered in a layer of dust and grime, fill the room, their screens flickering erratically or shattered beyond repair. Screens that once displayed complex equations and diagrams now show only static or fragmented images, while holographic displays lie dormant, their three-dimensional models of alien artifacts and specimens lost to time. In the center of the room, the once secure containment chamber stands breached and forgotten, its thick blast-proof glass shattered and strewn across the floor, a chilling reminder of past dangers now unleashed. Shelving units that once held neatly organized reference materials and research journals now sag under the weight of neglect, their contents scattered and forgotten. Specimens collected from previous missions lay abandoned, their significance lost amidst the wreckage and ruin. The room, once a beacon of scientific inquiry and discovery, now stands as a haunting testament to the ravages of time and neglect, a shadow of its former self.
+#
+roomstate damaged
+#
+c 
+#
+@dig Corridor <Sec 3>;sulaco_5:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yF|Y>|yorward;f,|Y<|yA|Y>|yft;a
+#
+f 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=As you step into this dimly lit corridor, the air is filled with the faint hum of ventilation systems and the soft glow of emergency lighting guides your way. The corridor stretches out before you, its metallic walls adorned with maintenance hatches and access panels. Doors line the walls at regular intervals, each leading to a different area of the ship. To port, a heavy blast door marked "Security" stands ready to grant access to the ship's armory and detention facilities. To starboard, a sliding door labeled "Medbay" offers access to the ship's medical facilities, where injured crew members receive treatment and care.
+#
+@set here/desc_damaged=As you cautiously step into this dimly lit corridor, the air is heavy with the scent of rust and neglect, the faint hum of malfunctioning ventilation systems a mournful accompaniment to your footsteps. Emergency lighting flickers sporadically, casting eerie shadows along the corridor as you navigate its twisted and corroded pathways. The corridor stretches out before you, its once sturdy metallic walls now marred by cracks and dents, adorned with layers of grime and decay. Maintenance hatches and access panels hang askew, some barely clinging to their frames, while others lie open, revealing the tangled mess of wires and pipes within. Doors line the walls at irregular intervals, their mechanisms damaged and corroded from years of disuse. To port, a battered blast door, barely recognizable beneath layers of rust and debris, bears the faded label "Security," its mechanism likely jammed beyond repair, rendering it useless for granting access to the ship's armory and detention facilities. To starboard, a sliding door, warped and twisted from years of neglect, bears the barely legible inscription "Medbay," offering a glimpse into the ship's medical facilities. The door stands partially ajar, its mechanism malfunctioning and its interior obscured by shadows, a haunting reminder of the care and treatment that once took place within. As you continue down the corridor, the occasional creak of metal and the distant drip of water serve as eerie reminders of the ship's derelict state. Despite the emptiness, the corridor remains a silent witness to the passage of time and the decay of the USS Sulaco.
+#
+roomstate damaged
+#
+@dig Security <Sec 3>;sulaco_6:typeclasses.myextendedroom.MyExtendedRoom=|Y<|ySE|Y>|ycurity;se,|Y<|yC|Y>|yorridor;c
+#
+se
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=As you step into this dimly lit room, the air is heavy with the scent of metal and machinery, with a faint undertone of ozone. Rows of computer terminals line the walls, their screens displaying surveillance feeds from various areas of the ship. Behind a reinforced glass partition, rows of weapon racks and ammunition lockers stand ready to arm the ship's security personnel in the event of an emergency. The weapons are meticulously organized, with rifles, pistols, and grenades arranged in neat rows, awaiting deployment at a moment's notice. In one corner of the room, a bank of monitors displays live feeds from security cameras positioned throughout the ship, providing constant surveillance of key areas and monitoring for any signs of intruders or unauthorized activity.
+#
+@set here/desc_damaged=As you cautiously step into this dimly lit room, the air hangs heavy with the scent of rust and decay, a stark contrast to the faint undertone of ozone that lingers in the stale atmosphere. Rows of computer terminals, their screens flickering sporadically or shattered beyond recognition, line the walls, a testament to the ship's derelict state. Behind a cracked and partially collapsed reinforced glass partition, rows of weapon racks and ammunition lockers stand abandoned and neglected. The weapons, once meticulously organized, now lay scattered and rusted, their usefulness long forgotten amidst the wreckage and ruin. In one corner of the room, a bank of monitors, some displaying static or distorted images, others completely non-functional, offer fragmented glimpses of the ship's deserted corridors and empty rooms. The live feeds from security cameras positioned throughout the ship provide a haunting reminder of the solitude that now permeates the USS Sulaco. As you survey the scene, the occasional groan of stressed metal and the distant drip of water serve as eerie reminders of the ship's deteriorating condition. Despite the emptiness, the room remains frozen in time, a silent witness to the ravages of neglect and abandonment.
+#
+roomstate damaged
+#
+c 
+#
+@dig Medbay-1 <Sec 3>;sulaco_7:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yM|Y>|yedbay;m,|Y<|yC|Y>|yorridor;c
+#
+m 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=As you step into this well-lit room, the air is cool and clinical, with the faint scent of antiseptic hanging in the air. Rows of medical beds line the walls, each one equipped with monitoring equipment and adjustable features to accommodate patients of varying sizes. Overhead lights cast a bright glow, illuminating the room with stark clarity. A central workstation stands at the heart of the room, its array of medical instruments neatly arranged and ready for use. Cabinets and shelves contain a variety of supplies, from bandages and dressings to medications and surgical tools. 
+#
+@set here/desc_damaged=As you cautiously step into this once well-lit room, the air is heavy with the scent of decay and neglect, a stark contrast to the faint remnant of antiseptic that lingers in the stale atmosphere. Rows of medical beds, their surfaces stained and tattered, line the walls, each one bearing signs of long abandonment and disuse. Overhead lights flicker sporadically, casting erratic shadows that dance across the room in a macabre display. A central workstation, once a beacon of healing and care, now stands abandoned and forgotten, its array of medical instruments coated in a thick layer of dust and grime. Cabinets and shelves, their doors hanging askew or missing entirely, contain a haphazard assortment of supplies, their contents scattered and neglected. Bandages and dressings lie strewn across the floor, medications long expired, and surgical tools rusted beyond recognition. As you survey the scene, the occasional creak of stressed metal and the distant drip of water serve as eerie reminders of the ship's derelict state. Despite the emptiness, the room remains frozen in time, a haunting testament to the fragility of life and the inevitability of decay.
+#
+roomstate damaged
+#
+@dig Medbay-2 <Sec 3>;sulaco_8:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yF|Y>|yorward;f,|Y<|yA|Y>|yft;a
+#
+f 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=As you step into this softly illuminated room, the air is calm and soothing, with the gentle hum of medical equipment providing a sense of reassurance. The room is divided into individual recovery pods, each one cocooning its occupant in a protective shell designed to promote healing and rest. Monitors display vital signs and treatment protocols, while automated systems administer medications and adjust environmental conditions to optimize recovery. A central control station stands at the heart of the room, allowing medical personnel to monitor and adjust the treatment regimens of each patient with precision and care. Cabinets and shelves contain a variety of supplies, from painkillers and antibiotics to nutrient supplements and hydration fluids.
+#
+@set here/desc_damaged=As you cautiously step into this softly illuminated room, the air carries a heavy weight of neglect and desolation, a stark contrast to the once calming atmosphere it exuded. The gentle hum of medical equipment, now sporadic and strained, offers a haunting echo of its former reassurance. The room, now in disarray, is divided into individual recovery pods, each one a shattered shell of its former self, bearing the scars of neglect and abandonment. Monitors, their screens cracked or darkened, display fragmented vital signs and treatment protocols, a futile attempt to maintain some semblance of functionality. A central control station, once a beacon of precision and care, now stands abandoned and forgotten amidst the wreckage. Cabinets and shelves, their doors hanging askew or torn off entirely, contain a jumbled mess of supplies, their contents long expired or rendered useless by time and neglect. As you take in the scene, the occasional groan of stressed metal and the distant drip of water serve as eerie reminders of the ship's deteriorating condition. Despite the emptiness, the room remains frozen in time, a silent witness to the ravages of neglect and abandonment.
+#
+roomstate damaged
+#
+a
+#
+c 
+#
+@dig Corridor <Sec 3>;sulaco_9:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yF|Y>|yorward;f,|Y<|yA|Y>|yft;a
+#
+f 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=As you step into this dimly lit corridor, the air is heavy with the scent of metal and machinery, with a faint undertone of tension. The corridor stretches out before you, its metallic walls adorned with maintenance hatches and access panels. Emergency lighting casts a soft glow along the floor, guiding the way through the labyrinthine network of hallways. To port, a sturdy blast door marked "Containment" stands ready to grant access to the secure chamber where potentially hazardous materials are stored and studied. The door remains sealed, its reinforced construction hinting at the dangers that lie beyond. Forward, the corridor leads to the ship's Hangar, where dropships and other auxiliary craft are stored and maintained. The sounds of machinery echo faintly from that direction, a reminder of the bustling activity that typically fills the hangar during missions.
+#
+@set here/desc_damaged=As you cautiously step into the corridor, the atmosphere is stifling, suffused with the tang of rust and decay, with an unsettling undercurrent of neglect. The corridor sprawls ahead, its once gleaming metal walls now marred by gaping holes and peeling paint. Broken maintenance hatches and access panels hang askew, barely clinging to their mounts. Feeble emergency lights intermittently flicker, casting feeble pools of illumination amidst the shadows that envelop the desolate passageway. To your left, a stout blast door, labeled "Containment," stands as a grim sentinel, its surface marred by scratches and dents, a testament to past attempts at breaching its defenses. It remains firmly shut, a silent warning of the peril lurking within. Straight ahead, the corridor meanders toward the ship's Hangar, though the path is obstructed by debris and detritus. Distant echoes of machinery reverberate from that direction, a haunting reminder of the bustling activity that once filled the now abandoned chamber.
+#
+roomstate damaged
+#
+@dig Containment <Sec 3>;sulaco_10:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yCO|Y>|yntainment;CO,|Y<|yC|Y>|yorridor;c
+#
+co 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=As you step into this dimly lit room, the air is heavy with the scent of metal and machinery, with a faint undertone of antiseptic. The room is lined with reinforced walls and blast-proof doors, designed to contain any threats that may arise from the specimens housed within. Observation windows line one wall, allowing for safe observation of the contents of the room without risking exposure to potentially dangerous substances. In the center of the room, a series of containment units stand dormant, their reinforced glass doors sealed shut to prevent any unauthorized access. Labels and warning signs adorn the containers, indicating the nature of the specimens contained within and the precautions required for handling them. Control panels line the walls, allowing for remote monitoring and control of the containment units from a safe distance.
+#
+@set here/desc_damaged=As you cautiously enter this dimly lit chamber, the air hangs heavy with the scent of metal and machinery, intermingled with a faint whiff of decay. The room, once a bastion of security, now wears the scars of neglect and abandonment. Its reinforced walls, once pristine, now bear the marks of time, with cracks spiderwebbing across their surface and sections crumbling away to reveal the underlying structure. Blast-proof doors, once sturdy guardians, now hang askew on their hinges, their mechanisms rusted and nonfunctional. Observation windows, once clear panes offering glimpses into the contained world within, are now obscured by grime and debris, rendering them useless. In the heart of the chamber, the once-imposing containment units stand as silent witnesses to better days, their reinforced glass doors now clouded with age and neglect, their seals compromised by years of disuse. Faded labels and warning signs cling desperately to their surfaces, barely legible reminders of the dangerous contents they once held. Control panels, once hubs of activity and vigilance, now sit dormant and lifeless, their screens dark and their buttons unresponsive. In this derelict shell of what was once a bastion of security, only echoes of its former purpose remain, haunting whispers of a time long past.
+#
+roomstate damaged
+#
+c 
+#
+@dig Central Hanger <Sec 2>;sulaco_11:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yH|Y>|yanger;h,|Y<|yC|Y>|yorridor;c 
+#
+h 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=You find yourself in the central hanger, a spacious chamber dedicated to the storage and transportation of cargo and supplies. As you step into this cavernous space, the air is filled with the scent of metal and machinery, with the faint echo of distant machinery filling the air. The room is dominated by rows of storage containers and crates, stacked to the ceiling and secured with heavy-duty restraints. Forklifts and cargo drones buzz around, ferrying goods to and from various locations on the ship. In one corner of the room, a series of loading docks stand ready to receive incoming shipments or dispatch cargo to other vessels. Automated systems ensure that everything is loaded and unloaded efficiently, with minimal need for human intervention.
+#
+@set here/desc_damaged=You find yourself standing amidst the central hangar, once a bustling hub of activity, now a desolate expanse of ruin and neglect. As you enter this vast chamber, the air is thick with the scent of rust and decay, mingled with the distant echoes of machinery now fallen silent. The room, once teeming with life, is now a graveyard of abandoned cargo and broken dreams. Rows of storage containers and crates, once neatly organized, now lie haphazardly strewn about, their contents spilling out onto the floor in a chaotic jumble. Heavy-duty restraints, now rusted and weakened by time, struggle to contain the wreckage within. Forklifts and cargo drones, once the lifeblood of this bustling space, now lie dormant and lifeless, their once-buzzing engines silenced forever. In one corner, the loading docks stand as grim reminders of a time when shipments came and went, their surfaces cracked and weathered, their mechanisms rusted and unusable. Automated systems, once the epitome of efficiency, now sit idle and abandoned, their screens flickering with static, their controls unresponsive to any command. In this haunting tableau of decay and despair, the remnants of a once-thriving operation now serve only as silent witnesses to the passage of time and the inevitability of oblivion.
+#
+roomstate damaged
+#
+@dig Port Hanger <Sec 2>;sulaco_12:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yP|Y>|yort;p,|Y<|yS|Y>|ytarboard;s 
+#
+p 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=You find yourself in the port hanger, a sprawling chamber dedicated to the storage and maintenance of the ship's fleet of armored personnel carriers and dropships. As you step into this well-lit space, the air is filled with the faint scent of lubricants and coolant, with the distant hum of machinery filling the air. The room is lined with rows of armored vehicles and dropships, their sleek and menacing profiles gleaming in the overhead lights. Technicians move about, performing routine maintenance checks and pre-flight inspections to ensure that each vehicle is ready for action at a moment's notice. In one corner of the room, a series of maintenance bays stand ready to receive vehicles in need of repairs or upgrades. Hydraulic lifts and gantry cranes facilitate easy access to the underside of each vehicle, allowing technicians to perform intricate repairs with precision and efficiency.
+#
+@set here/desc_damaged=You find yourself standing within the port hangar, once a bustling hub of activity, now a shadow of its former self, marred by neglect and decay. As you enter this dimly illuminated chamber, the air carries a stale scent of old lubricants and stagnant coolant, mingled with the distant echoes of machinery now fallen silent. The room, once a testament to the ship's military might, now stands as a graveyard of rusting metal and broken dreams. Rows of armored personnel carriers and dropships, once gleaming symbols of power, now sit abandoned and forgotten, their surfaces marred by corrosion and neglect. Technicians, once diligent in their duties, are nowhere to be found, leaving behind only the eerie silence of abandonment. In one corner, the maintenance bays, once bustling with activity, now lie empty and desolate, their hydraulic lifts and gantry cranes frozen in place, relics of a time long past. In this haunting scene of decay and despair, the once-proud fleet of vehicles now serves only as a grim reminder of the inevitable march of time and the fickle nature of fate.
+#
+roomstate damaged
+#
+s 
+#
+@dig Starboard Hanger <Sec 2>;sulaco_13:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yS|Y>|ytarboard;s,|Y<|yP|Y>|yort;p
+#
+s 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=You find yourself in the starboard hanger, a bustling chamber dedicated to the storage and deployment of the ship's fleet of shuttles and smaller spacecraft. As you step into this bustling space, the air is filled with the sound of engines firing and technicians shouting instructions, with the faint scent of rocket fuel hanging in the air. The room is lined with rows of spacecraft, their sleek and streamlined designs ready to carry crew members to distant planets or provide support during orbital operations. Pilots move about, performing pre-flight checks and running diagnostics to ensure that each craft is ready for launch. In one corner of the room, a series of launch tubes stand ready to catapult shuttles and spacecraft into space. Crew members stand by, ready to activate the launch sequence and send the vessels hurtling into the void.
+#
+@set here/desc_damaged=You find yourself standing within the starboard hangar, once a hive of activity, now a haunting reminder of better days, tarnished by neglect and disrepair. As you enter this dimly lit chamber, the air carries echoes of a bygone era, mingled with the faint scent of stale air and the remnants of rocket fuel long since evaporated. The room, once alive with the hustle and bustle of spacefaring endeavors, now lies silent and forlorn, its once-immaculate surfaces marred by the ravages of time and neglect. Rows of shuttles and smaller spacecraft, once gleaming symbols of exploration and adventure, now stand as rusted relics of a forgotten age, their once-sleek designs dulled by layers of grime and corrosion. Pilots and technicians, once the lifeblood of this bustling space, are nowhere to be seen, leaving behind only the eerie stillness of abandonment. In one corner, the launch tubes, once conduits to the stars, now stand as silent witnesses to the passage of time, their mechanisms rusted and inert, their promise of adventure extinguished. In this somber tableau of decay and despair, the once-thriving hub of interstellar travel now serves only as a melancholy reminder of the fleeting nature of progress and the relentless march of time.
+#
+roomstate damaged
+#
+@dig Corridor <Sec 1>;sulaco_14:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yF|Y>|yorward;f,|Y<|yA|Y>|yft;a
+#
+f 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=As you step into this well-lit corridor, the air is filled with the faint hum of machinery and the soft glow of emergency lighting guides your way. The corridor stretches out before you, its metallic walls adorned with maintenance hatches and access panels. Doors line the walls at regular intervals, each leading to a different area of the ship. As you make your way through the corridor, the occasional flicker of overhead lights casts eerie shadows along the walls, adding to the sense of anticipation.
+#
+@set here/desc_damaged=As you cautiously tread into this dimly lit corridor, the air carries a stale scent of neglect, mingled with the distant echoes of machinery now fallen silent. The once well-lit passageway now struggles to illuminate its surroundings, the emergency lighting casting feeble beams that barely penetrate the gloom. The corridor, once a bustling thoroughfare, now stands desolate and abandoned, its metallic walls tarnished and scarred by the passage of time. Maintenance hatches and access panels, once vital components of the ship's infrastructure, now hang askew or lie shattered on the floor, their mechanisms rusted and nonfunctional. Doors, once portals to different areas of the ship, now stand stubbornly closed or hang off their hinges, their interiors hidden from view. As you navigate through the corridor, the occasional flicker of overhead lights sends shivers down your spine, casting fleeting shadows that seem to dance in the darkness. In this eerie and forsaken realm, every step forward is a testament to the ship's gradual descent into disrepair and decay.
+#
+roomstate damaged
+#
+@dig Corridor <Sec 1>;sulaco_15:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yF|Y>|yorward;f,|Y<|yA|Y>|yft;a
+#
+f 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=As you step into this well-lit corridor, the air is filled with the faint hum of machinery and the soft glow of emergency lighting guides your way. The corridor stretches out before you, its metallic walls adorned with maintenance hatches and access panels. To starboard, a sturdy blast door marked "Charlie|Delta Soldier Berthing" stands ready to grant access to the living quarters for the ship's elite combat units. The door remains sealed, its reinforced construction indicating the importance of the personnel housed within. As you make your way through the corridor, the occasional flicker of overhead lights casts eerie shadows along the walls, adding to the sense of anticipation.
+#
+@set here/desc_damaged=As you cautiously enter this dimly illuminated corridor, the air carries a heavy scent of neglect, mingled with the distant echoes of machinery now fallen silent. What was once a well-lit thoroughfare now struggles to dispel the encroaching darkness, the feeble glow of emergency lighting casting weak beams that barely penetrate the gloom. The corridor, once a bustling artery of the ship, now stands as a testament to neglect and decay, its metallic walls marred by the scars of time. Maintenance hatches and access panels, once vital components of the ship's infrastructure, now hang askew or lie shattered on the floor, their mechanisms rusted and nonfunctional. To starboard, a sturdy blast door, labeled "Charlie|Delta Soldier Berthing," stands as a silent sentinel, its reinforced construction a stark reminder of the elite combat units once housed within. The door remains firmly shut, its sealed surface betraying no hint of the activity that once thrived beyond. As you navigate through the corridor, the occasional flicker of overhead lights sends unsettling shadows dancing along the walls, heightening the sense of unease that permeates the air. In this desolate and forsaken passage, every step forward is a journey deeper into the heart of the ship's decline.
+#
+roomstate damaged
+#
+@dig Charlie|Delta Berthing <Sec 1>;sulaco_16:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yCH|Y>|yarlie|Delta;ch,|Y<|yC|Y>|yorridor;c 
+#
+ch 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=This is a specialized living quarters reserved for the elite combat units of the ship. As you step into this dimly lit space, the air is heavy with the scent of metal and machinery, with the faint echo of distant machinery filling the air. The berthing area is divided into rows of bunk beds, each one neatly made with military precision. Personal belongings are stowed away in lockers, and the faint sound of ventilation systems fills the air with a constant hum. The berthing area exudes a sense of readiness, with equipment racks and weapon lockers standing ready to arm the ship's elite combat units at a moment's notice. The room is designed for efficiency and functionality, with every inch of space carefully optimized for maximum use. In one corner of the room, a series of training mats and exercise equipment stand ready to help the soldiers maintain peak physical condition during downtime. The walls are adorned with motivational posters and tactical diagrams. As you explore the berthing area, the occasional flicker of overhead lights casts eerie shadows along the walls, adding to the sense of anticipation and readiness.
+#
+@set here/desc_damaged=This specialized living quarters, once reserved for the ship's elite combat units, now stands as a somber testament to neglect and abandonment. As you cautiously enter this dimly illuminated space, the air hangs heavy with the scent of rust and decay, mingled with the distant echoes of machinery now fallen silent. Rows of bunk beds, once meticulously arranged with military precision, now lie in disarray, their mattresses torn and their frames corroded by neglect. Personal belongings, once neatly stowed away in lockers, now lay scattered and forgotten amidst the wreckage. The faint hum of ventilation systems serves as a melancholy backdrop to the desolation that pervades the room. Equipment racks and weapon lockers, once symbols of readiness and preparedness, now stand empty and forlorn, their contents long since pilfered or left to rust. Every corner of the room bears the scars of neglect, with peeling paint and crumbling walls a stark reminder of its former glory. In one corner, training mats and exercise equipment, once vital tools for maintaining peak physical condition, now lay discarded and unused, their surfaces marred by years of disuse. The walls, once adorned with motivational posters and tactical diagrams, now stand bare and lifeless, stripped of their former purpose. As you traverse the bleak expanse of the berthing area, the occasional flicker of overhead lights casts haunting shadows along the walls, serving as a grim reminder of the room's former inhabitants and the dreams that now lie shattered amidst the ruins.
+#
+roomstate damaged
+#
+c 
+#
+@dig Corridor <Sec 1>;sulaco_17:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yF|Y>|yorward;f,|Y<|yA|Y>|yft;a
+#
+f 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=This corridor serves as a vital artery that extends through the front section of the starship. As you step into this dimly lit passageway, the air is heavy with the scent of metal and machinery, with the soft hum of ventilation systems echoing in the distance. The corridor stretches out before you, disappearing into darkness in both directions as it continues forward and aft. Emergency lighting casts a faint glow along the walls, guiding the way through the maze of hallways and access passages. Maintenance hatches and access panels line the walls, providing access to the intricate network of systems that keep the ship operating smoothly. As you make your way through the corridor, the occasional flicker of overhead lights casts eerie shadows along the walls, adding to the sense of isolation and desolation.
+#
+@set here/desc_damaged=This corridor, once a bustling thoroughfare vital to the functioning of the starship's front section, now stands as a desolate and forgotten passageway, its once vibrant life replaced by the oppressive weight of neglect and decay. As you cautiously step into this dimly illuminated artery, the air hangs heavy with the stench of rust and disuse, accompanied by the distant hum of ventilation systems now struggling to maintain their function. The corridor stretches out before you like a yawning abyss, its once pristine surfaces now marred by cracks and corrosion, disappearing into darkness in both directions. Feeble emergency lighting casts weak beams along the walls, barely illuminating the maze of hallways and access passages that branch off into obscurity. Maintenance hatches and access panels, once vital points of access to the ship's inner workings, now stand as rusted relics, their mechanisms frozen and their purpose forgotten. As you traverse the desolate expanse of the corridor, the occasional flicker of overhead lights sends eerie shadows dancing across the walls, a haunting reminder of the ship's gradual descent into ruin and abandonment.
+#
+roomstate damaged
+#
+@dig Corridor <Sec 1>;sulaco_18:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yF|Y>|yorward;f,|Y<|yA|Y>|yft;a
+#
+f 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=This corridor serves as a bustling thoroughfare that runs through the heart of the starship's front section. As you step into this well-traveled passageway, the air is filled with the faint hum of machinery and the soft glow of emergency lighting guides your way. The corridor stretches out before you, disappearing into the distance as it continues both forward and aft. Its metallic walls are adorned with maintenance hatches and access panels, while overhead lights cast a steady glow, illuminating the path ahead. Hallways extend forward and aft from this central point, leading to various sections of the ship. 
+#
+@set here/desc_damaged=This corridor, once a bustling artery coursing through the heart of the starship's front section, now stands as a desolate and neglected thoroughfare, its former vitality replaced by an eerie stillness and decay. As you cautiously step into this once well-traveled passageway, the air hangs heavy with the scent of rust and stagnation, punctuated by the distant echo of machinery now fallen silent. The corridor stretches out before you like a forgotten relic, its once gleaming surfaces now tarnished by neglect and disrepair, disappearing into darkness in both directions. Feeble emergency lighting casts a dim glow along the walls, barely illuminating the maze of maintenance hatches and access panels that line its metallic expanse. Overhead lights flicker intermittently, their once steady glow now a faltering beacon in the gloom. Hallways branch off from this central point, their entrances obscured by debris and neglect, leading to sections of the ship now lost to time. In this haunting tableau of abandonment and decay, every step forward is a journey deeper into the ship's forgotten past.
+#
+roomstate damaged
+#
+@dig Crew Quarters <Sec 1>;sulaco_19:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yCR|Y>|yew Quarters;cr,|Y<|yC|Y>|yorridor;c 
+#
+cr 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=This is spacious chamber dedicated to providing rest and relaxation for the ship's personnel. As you step into this dimly lit space, the air is filled with the faint hum of machinery and the soft glow of emergency lighting guides your way. The berthing area is divided into rows of bunk beds, each one neatly made with military precision. Personal belongings are stowed away in lockers, and the faint sound of ventilation systems fills the air with a constant hum. In one corner of the room, a series of cryo-sleep pods stand ready to provide extended periods of rest for the crew during long journeys through space. The pods are sleek and futuristic in design, with transparent covers that allow for easy monitoring of the occupants within. Despite the absence of personnel, the berthing area exudes a sense of comfort and familiarity, with communal areas for socializing and relaxation scattered throughout the room. Couches and tables provide spaces for crew members to gather and unwind during their off-duty hours. As you explore the berthing area, the occasional flicker of overhead lights casts eerie shadows along the walls, adding to the sense of tranquility and solitude.
+#
+@set here/desc_damaged=This once spacious chamber, intended for the rest and rejuvenation of the ship's personnel, now stands as a bleak reminder of the ship's decline, marred by neglect and decay. As you cautiously step into this dimly illuminated space, the air carries the stale scent of abandonment, mingled with the distant echoes of machinery now fallen silent. Rows of bunk beds, once neatly arranged with military precision, now lie in disarray, their mattresses torn and their frames rusted by neglect. Personal belongings, once carefully stowed away in lockers, now lay scattered and forgotten amidst the wreckage. The faint hum of ventilation systems serves as a mournful backdrop to the desolation that pervades the room. In one corner, a series of cryo-sleep pods, once symbols of hope for extended periods of rest during long journeys through space, now stand dormant and lifeless, their sleek designs tarnished by neglect. Despite the absence of personnel, the berthing area exudes no sense of comfort or familiarity, its communal areas now devoid of life and laughter. Couches and tables, once hubs of socializing and relaxation, now sit empty and forlorn, their surfaces coated in dust and debris. As you explore the desolate expanse of the berthing area, the occasional flicker of overhead lights casts haunting shadows along the walls, serving as a grim reminder of the room's former inhabitants and the dreams that now lie shattered amidst the ruins.
+#
+roomstate damaged
+#
+c 
+#
+@dig Corridor <Sec 1>;sulaco_20:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yS|Y>|ytarboard;s,|Y<|yP|Y>|yort;p
+#
+s 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=As you step into this well-lit passageway, the air is filled with the faint hum of machinery and the soft glow of emergency lighting guides your way. The corridor stretches out before you, disappearing into the distance as it continues to port. Maintenance hatches and access panels line the walls, providing access to the intricate network of systems that keep the ship operating smoothly. On the forward wall, a sturdy blast door marked "Armory" stands ready to grant access to the ship's arsenal of weapons and equipment. The door remains sealed, its reinforced construction indicating the importance of its contents. Further down the corridor, another doorway leads to the ship's Canteen, where crew members gather to eat and socialize during their off-duty hours. The sounds of clattering dishes and lively conversation spill out into the corridor. As you make your way through the corridor, the occasional flicker of overhead lights casts eerie shadows along the walls, adding to the sense of anticipation and readiness. 
+#
+@set here/desc_damaged=As you cautiously step into this once well-lit passageway, now dimmed by neglect and disuse, the air carries a heavy scent of rust and decay, mingled with the distant echoes of machinery now fallen silent. The corridor stretches out before you like a forgotten pathway, its once gleaming surfaces now tarnished and marred by neglect, disappearing into darkness in both directions. Maintenance hatches and access panels, once vital points of access to the ship's inner workings, now stand as rusted relics, their mechanisms frozen and their purpose forgotten. On the forward wall, a sturdy blast door, labeled "Armory," stands as a silent sentinel, its reinforced construction a stark reminder of the weapons and equipment now left to gather dust beyond its sealed surface. Further down the corridor, another doorway leads to the ship's Canteen, where the echoes of lively conversation and clattering dishes now serve as a haunting reminder of better days. As you traverse the desolate expanse of the corridor, the occasional flicker of overhead lights sends eerie shadows dancing across the walls, a grim testament to the ship's gradual descent into ruin and abandonment.
+#
+roomstate damaged
+#
+@dig Canteen <Sec 1>;sulaco_21:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yCA|Y>|ynteen;ca,|Y<|yC|Y>|yorridor;c 
+#
+ca 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=As you step into this spacious chamber, the air is filled with the faint aroma of food and the soft hum of ventilation systems. The canteen is divided into rows of tables and chairs, arranged in a cafeteria-style layout. Empty trays and utensils are neatly stacked at one end of the room, ready to be used by hungry crew members during meal times. In one corner of the canteen, a serving counter stands ready to dispense a variety of meals and beverages to the ship's hungry crew. Behind the counter, food preparation stations and storage areas are equipped with state-of-the-art equipment, ensuring that meals are prepared quickly and efficiently. Posters and bulletin boards adorn the walls, displaying announcements and reminders for the crew. As you explore the canteen area, the occasional beep of a food dispenser and the distant hum of machinery remind you of the bustling activity that typically fills this space during meal times.
+#
+@set here/desc_damaged=As you cautiously enter this once bustling chamber, now a silent witness to neglect and abandonment, the air carries a stale scent of decay, mingled with the distant echoes of machinery now fallen silent. The canteen, once a hub of camaraderie and sustenance for the ship's crew, now stands as a somber reminder of better days gone by. Rows of tables and chairs, once filled with bustling activity, now sit empty and forlorn, their surfaces coated in dust and debris. Empty trays and utensils, once symbols of hearty meals and lively conversation, now lie abandoned at one end of the room, their purpose forgotten amidst the ruins. In one corner, a serving counter, once a beacon of culinary delight, now stands silent and deserted, its once bustling food preparation stations now cold and lifeless. Behind the counter, food preparation stations and storage areas, once equipped with state-of-the-art equipment, now sit idle and unused, their surfaces obscured by the passage of time. Posters and bulletin boards, once vibrant with announcements and reminders, now hang faded and peeling, their messages lost to the ravages of neglect. As you explore the desolate expanse of the canteen area, the occasional beep of a malfunctioning food dispenser and the distant hum of machinery serve as haunting reminders of the bustling activity that once filled this space, now lost to the winds of time.
+#
+roomstate damaged
+#
+c 
+#
+@dig Armory <Sec 1>;sulaco_22:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yAR|Y>|ymory;ar,|Y<|yC|Y>|yorridor;c 
+#
+ar 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=This is a fortified chamber dedicated to housing the ship's arsenal of weapons and equipment. As you step into this dimly lit space, the air is heavy with the scent of metal and machinery, with the faint echo of distant machinery filling the air. The armory is divided into rows of weapon racks and ammunition lockers, each one meticulously organized and stocked with a variety of firearms, explosives, and tactical gear. Heavy-duty blast doors stand ready to seal the chamber in the event of an emergency, ensuring the security of the ship's weapons cache. In one corner of the armory, a series of workbenches and equipment stations stand ready to facilitate maintenance and repairs on the ship's weaponry. Tools and spare parts are neatly organized, with racks of rifles and pistols waiting to be cleaned and serviced by the ship's armorers. Emergency lighting casts a dim glow across the room, creating eerie shadows that dance along the walls. As you explore the armory area, the occasional beep of a security scanner and the distant hum of machinery serve as reminders of the crucial role this chamber plays in safeguarding the ship and its crew.
+#
+@set here/desc_damaged=
+ As you cautiously enter this once fortified chamber, now a shadow of its former self, the air hangs heavy with the scent of neglect and decay, mingled with the distant echoes of machinery now fallen silent. The armory, once a bastion of security and preparedness, now stands as a solemn reminder of the ship's decline. Rows of weapon racks and ammunition lockers, once meticulously organized, now lie in disarray, their contents scattered and forgotten amidst the ruins. Heavy-duty blast doors, once stalwart guardians of the ship's arsenal, now hang askew on their hinges, their mechanisms rusted and nonfunctional. In one corner of the armory, a series of workbenches and equipment stations, once bustling with activity, now sit abandoned and unused, their surfaces coated in dust and debris. Tools and spare parts, once carefully organized, now lay strewn about haphazardly, their purpose forgotten amidst the wreckage. Emergency lighting casts a feeble glow across the room, its dim illumination unable to dispel the oppressive darkness that pervades the chamber. As you explore the desolate expanse of the armory, the occasional beep of a malfunctioning security scanner and the distant hum of machinery serve as haunting reminders of the chamber's former importance, now lost to the ravages of time and neglect.
+#
+roomstate damaged
+#
+@tel sulaco_12
+#
+@dig Corridor <Sec 1>;sulaco_23:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yF|Y>|yorward;f,|Y<|yA|Y>|yft;a
+#
+f 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=
+ This is a bustling thoroughfare that runs through the heart of the starship's front section. As you step into this well-traveled passageway, the air is filled with the faint hum of machinery and the soft glow of emergency lighting guides your way. The corridor stretches out before you, disappearing into the distance as it continues both forward and aft. Its metallic walls are adorned with maintenance hatches and access panels, while overhead lights cast a steady glow, illuminating the path ahead. Hallways extend forward and aft from this central point, leading to various sections of the ship. 
+#
+@set here/desc_damaged=This once bustling thoroughfare, now a desolate and forgotten corridor, winds through the heart of the starship's front section. As you cautiously step into this dimly lit passageway, the air carries the stale scent of neglect, mingled with the distant echoes of machinery now fallen silent. The corridor stretches out before you like a forgotten maze, its once gleaming surfaces now tarnished and marred by neglect, disappearing into darkness in both directions. Maintenance hatches and access panels, once vital points of access to the ship's inner workings, now stand as rusted relics, their mechanisms frozen and their purpose forgotten. Overhead lights flicker intermittently, their once steady glow now a faltering beacon in the gloom. Hallways branch off from this central point, their entrances obscured by debris and neglect, leading to sections of the ship now lost to time. In this haunting tableau of abandonment and decay, every step forward is a journey deeper into the ship's forgotten past.
+#
+roomstate damaged
+#
+@dig Corridor <Sec 1>;sulaco_24:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yF|Y>|yorward;f,|Y<|yA|Y>|yft;a
+#
+f 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=As you step into this well-lit passageway, the air is filled with the faint hum of machinery and the soft glow of emergency lighting guides your way. The corridor stretches out before you, disappearing into darkness as it continues to port, starboard, and aft. Maintenance hatches and access panels line the walls, providing access to the intricate network of systems that keep the ship operating smoothly. To port, a sturdy blast door leads to the Bravo|Alpha Berthing Area, where crew members rest and recharge during their off-duty hours. The door remains closed, its reinforced construction indicating the importance of the personnel housed within. Further down the corridor, doorways to starboard and aft lead to other sections of the ship, providing access to essential areas such as the bridge, telecomms, and crew quarters. The soft hum of machinery fills the air, a constant reminder of the ship's active systems even in the absence of personnel. As you make your way through the corridor, the occasional flicker of overhead lights casts eerie shadows along the walls, adding to the sense of anticipation and readiness.
+#
+@set here/desc_damaged=As you cautiously step into this once bustling passageway, now a solemn echo of its former activity, the air carries a heavy scent of neglect, mingled with the distant echoes of machinery now fallen silent. The corridor stretches out before you like a forgotten labyrinth, its once pristine surfaces now marred by cracks and corrosion, disappearing into darkness in all directions. Maintenance hatches and access panels, once vital points of access to the ship's inner workings, now stand as rusted relics, their mechanisms frozen and their purpose forgotten. To port, a sturdy blast door, leading to the Bravo|Alpha Berthing Area, stands as a silent sentinel, its reinforced construction a stark reminder of the personnel who once sought refuge within. Further down the corridor, doorways to starboard and aft lead to other sections of the ship, now obscured by debris and neglect, their importance lost amidst the wreckage. The soft hum of machinery lingers in the air, a ghostly reminder of the ship's former vitality. As you navigate through the desolate expanse of the corridor, the occasional flicker of overhead lights casts haunting shadows along the walls, serving as a grim testament to the ship's gradual descent into ruin and abandonment.
+#
+roomstate damaged
+#
+@dig Bravo|Alpha <Sec 1>;sulaco_25:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yBR|Y>|yavo|Alpha;br,|Y<|yC|Y>|yorridor;c
+#
+br 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=You are in a designated living quarters for the ship's personnel. As you step into this dimly lit chamber, the air is heavy with the scent of metal and machinery, with the faint hum of ventilation systems providing a constant background noise. The berthing area is divided into rows of bunk beds, each one neatly made with military precision. Personal belongings are stowed away in lockers, and the soft glow of emergency lighting casts a subdued ambiance throughout the room. In one corner of the room, several cryo-beds stand ready to provide extended periods of rest for the crew during long journeys through space. The beds are sleek and futuristic in design, with transparent covers that allow for easy monitoring of the occupants within. Despite the absence of personnel, the berthing area maintains an air of order and readiness, with communal areas for socializing and relaxation scattered throughout the room. Couches and tables provide spaces for crew members to gather and unwind during their off-duty hours. As you explore the Bravo|Alpha Berthing Area, the occasional beep of a monitoring system and the distant hum of machinery remind you of the bustling activity that typically fills this space when the crew is on board.
+#
+@set here/desc_damaged=You find yourself in what was once a designated living quarters for the ship's personnel, now a solemn testament to neglect and disrepair. As you cautiously step into this dimly lit chamber, the air hangs heavy with the scent of rust and decay, mingled with the distant echoes of machinery now fallen silent. Rows of bunk beds, once neatly arranged with military precision, now sit empty and forlorn, their mattresses worn and their frames corroded by neglect. Personal belongings, once carefully stowed away in lockers, now lay scattered and forgotten amidst the wreckage. The soft glow of emergency lighting casts feeble beams across the room, its subdued ambiance unable to dispel the pervasive gloom. In one corner, several cryo-beds, once symbols of hope for extended periods of rest during long journeys through space, now stand dormant and lifeless, their sleek designs tarnished by neglect. Despite the absence of personnel, the berthing area maintains no semblance of order or readiness, its communal areas now devoid of life and laughter. Couches and tables, once hubs of socializing and relaxation, now sit abandoned and unused, their surfaces coated in dust and debris. As you explore the Bravo|Alpha Berthing Area, the occasional beep of a malfunctioning monitoring system and the distant hum of machinery serve as haunting reminders of the bustling activity that once filled this space, now lost to the winds of time.
+#
+roomstate damaged
+#
+c 
+#
+@dig Corridor <Sec 1>;sulaco_26:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yS|Y>|ytarboard;s,|Y<|yP|Y>|yort;p
+#
+s 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=As you step into this well-lit corridor, the air is filled with the faint hum of machinery and the soft glow of emergency lighting guides your way. The corridor stretches out before you, disappearing into darkness as it continues to port. Maintenance hatches and access panels line the walls, providing access to the intricate network of systems that keep the ship operational. On the aft wall, a sturdy blast door leads to the Briefing Room, where the ship's officers gather to discuss missions and strategies. The door remains closed, hinting at the confidential nature of the discussions that take place within. Further down the corridor, another doorway leads to the Bridge, the nerve center of the ship where orders are given and decisions are made. The door stands closed, its reinforced construction indicating the importance of the personnel and equipment housed within. As you make your way through the corridor, the occasional flicker of overhead lights casts eerie shadows along the walls, adding to the sense of anticipation and readiness. 
+#
+@set here/desc_damaged=As you cautiously step into this once bustling corridor, now a solemn passageway echoing with the whispers of neglect, the air carries a heavy scent of abandonment, mingled with the distant echoes of machinery now fallen silent. The corridor stretches out before you like a forgotten pathway, its once pristine surfaces now marred by cracks and corrosion, disappearing into darkness as it extends to port. Maintenance hatches and access panels, once vital points of access to the ship's inner workings, now stand as rusted relics, their mechanisms frozen and their purpose forgotten. On the aft wall, a sturdy blast door, leading to the Briefing Room, stands as a silent sentinel, its reinforced construction a stark reminder of the secrets and strategies that lie beyond its sealed surface. Further down the corridor, another doorway leads to the Bridge, the nerve center of the ship now cloaked in silence, its importance overshadowed by neglect. As you navigate through the desolate expanse of the corridor, the occasional flicker of overhead lights sends haunting shadows dancing across the walls, serving as grim reminders of the ship's gradual descent into ruin and abandonment.
+#
+roomstate damaged
+#
+@dig Briefing Room;sulaco_27:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yBR|Y>iefing;br,|Y<|yC|Y>|yorridor;c
+#
+br 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=This is a designated space for planning and strategizing before missions. As you step into this dimly lit chamber, the air is filled with the faint scent of metal and machinery, with the soft glow of emergency lighting providing a subdued ambiance. The briefing room is arranged with rows of chairs facing a central podium, where mission briefings are typically conducted. A large viewscreen dominates one wall, capable of displaying tactical maps, mission objectives, and other vital information for the crew. In one corner of the room, a series of display screens and data terminals stand ready to provide additional information and support during briefings. The walls are adorned with maps, charts, and diagrams, serving as visual aids to enhance understanding of the mission at hand. The chairs are neatly arranged, the podium stands ready, and the viewscreen hums with latent energy, waiting to come to life with the latest mission updates. As you explore the briefing room, the occasional beep of a data terminal and the distant hum of machinery remind you of the important role this chamber plays in preparing the crew of the ship for the challenges they may face in the depths of space.
+#
+@set here/desc_damaged= As you cautiously step into this once vibrant chamber, now a solemn echo of its former purpose, the air carries the heavy scent of neglect, mingled with the distant echoes of machinery now fallen silent. The briefing room, once a hub of planning and strategizing before missions, now stands as a somber reminder of better days gone by. Rows of chairs, once occupied by eager crew members, now sit empty and forlorn, their surfaces coated in dust and debris. The central podium, once a focal point for mission briefings, now stands deserted and unused, its purpose forgotten amidst the ruins. A large viewscreen, once a conduit for vital mission information, now sits dark and lifeless, its display forever frozen in time. In one corner, a series of display screens and data terminals, once bustling with activity, now stand dormant and silent, their screens blank and their circuits cold. The walls, once adorned with maps, charts, and diagrams, now hang faded and peeling, their messages lost to the ravages of neglect. As you explore the desolate expanse of the briefing room, the occasional beep of a malfunctioning data terminal and the distant hum of machinery serve as haunting reminders of the chamber's former importance, now lost to the passage of time.
+#
+roomstate damaged
+#
+c 
+#
+@dig Command Bridge;sulaco_28:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yCO|Y>|ymmand;co,|Y<|yC>orridor;c
+#
+co 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=This is the bridge of the USS Sulaco, the nerve center of the starship's operations. As you step into this expansive chamber, the air is filled with the soft hum of machinery and the faint glow of emergency lighting illuminates the room. The command bridge is dominated by a large central console, where the ship's captain and senior officers oversee navigation, communication, and tactical operations. Rows of control panels and display screens line the walls, providing access to vital ship systems and real-time information about the ship's status. In the center of the room, a circular holographic display projects a three-dimensional representation of the surrounding space, complete with nearby celestial bodies, potential threats, and points of interest. The display flickers occasionally, a reminder of the ship's current state of inactivity. The viewscreens hum with latent energy, waiting to spring to life with the latest updates and orders. As you explore the command bridge, the occasional beep of a control panel and the distant hum of machinery serve as reminders of the ship's active systems, even in its current state of dormancy.
+#
+@set here/desc_damaged=As you cautiously step into the once bustling command center of the USS Sulaco, now a silent witness to neglect and decay, the air carries the stale scent of abandonment, mingled with the distant echoes of machinery now fallen silent. The expansive chamber, once the nerve center of the starship's operations, now stands as a solemn reminder of better days gone by. The command bridge, once alive with activity, now sits deserted and forlorn, its once gleaming surfaces tarnished by neglect and disuse. The central console, where the ship's captain and senior officers once oversaw navigation, communication, and tactical operations, now stands silent and unused, its screens dark and its controls dormant. Rows of control panels and display screens, once vital conduits for ship systems and real-time information, now hang lifeless and unused, their circuits cold and their displays blank. In the center of the room, a circular holographic display, once a beacon of situational awareness, now flickers intermittently, its three-dimensional representation of space distorted and incomplete. The viewscreens, once vibrant with the latest updates and orders, now sit dark and silent, their screens forever frozen in time. As you explore the desolate expanse of the command bridge, the occasional beep of a malfunctioning control panel and the distant hum of machinery serve as haunting reminders of the ship's former vitality, now lost to the winds of time.
+#
+roomstate damaged
+#
+c 
+#
+p 
+#
+@dig Corridor <Sec 1>;sulaco_29:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yF|Y>|yorward;f,|Y<|yA|Y>|yft;a
+#
+f 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=You are standing in a vital artery that extends through the front section of the starship. As you step into this well-lit corridor, the air is filled with the faint hum of machinery and the soft glow of emergency lighting guides your way. The corridor stretches out before you, disappearing into darkness as it continues both forward and aft. Maintenance hatches and access panels line the walls, providing access to the intricate network of systems that keep the ship operational. In this section of the corridor, there are no doors interrupting the smooth metal walls. Instead, a display of trophies stands proudly on one side, showcasing the achievements and honors earned by the ship's crew. Medals, plaques, and commendations gleam under the soft lights, a testament to the bravery and skill of those who serve aboard the USS Sulaco.  As you continue down the corridor, the occasional flicker of overhead lights casts eerie shadows along the walls, adding to the sense of reverence and respect for those who have served before.
+#
+@set here/desc_damaged=
+ As you cautiously step into this once vital passageway, now a solemn echo of its former glory, the air carries the heavy scent of abandonment, mingled with the distant echoes of machinery now fallen silent. The corridor, once a bustling artery through the starship's front section, now stands as a somber reminder of better days gone by. The soft glow of emergency lighting casts feeble beams across the corridor, its illumination unable to dispel the pervasive gloom. Maintenance hatches and access panels, once vital conduits for the ship's operations, now stand as rusted relics, their mechanisms frozen and their purpose forgotten. In this desolate section of the corridor, there are no doors interrupting the smooth metal walls, only empty spaces where memories of past glories once resided. Instead, a display of trophies, once a source of pride and honor, now stands as silent witnesses to the ship's decline. Medals, plaques, and commendations, once gleaming symbols of bravery and skill, now sit tarnished and forgotten, their stories lost to the passage of time. As you traverse the desolate expanse of the corridor, the occasional flicker of overhead lights sends haunting shadows dancing across the walls, serving as grim reminders of the sacrifices made by those who have served aboard the USS Sulaco.
+#
+roomstate damaged
+#
+@dig Corridor <Sec 1>;sulaco_30:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yF|Y>|yorward;f,|Y<|yA|Y>|yft;a
+#
+f 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=You are standing in a bustling thoroughfare that extends through the heart of the starship's front section. As you step into this well-lit corridor, the air is filled with the faint hum of machinery, and the soft glow of emergency lighting guides your way. The corridor stretches out before you, disappearing into darkness as it continues both forward and aft. Maintenance hatches and access panels line the walls, providing access to the intricate network of systems that keep the ship operational. In this section of the corridor, there are no doors interrupting the smooth metal walls. Instead, a display panel is mounted on one side, showcasing a detailed record of the ship's past missions. The panel features holographic projections and interactive touch screens, allowing users to explore the history of the USS Sulaco and the accomplishments of its crew. As you continue down the corridor, the occasional flicker of overhead lights casts eerie shadows along the walls, adding to the sense of reverence and respect for the ship's storied past.
+#
+@set here/desc_damaged=As you cautiously step into this once bustling thoroughfare, now a shadow of its former vibrancy, the air carries the weight of neglect, mingled with the distant echoes of machinery now fallen silent. The corridor, once a vital artery through the starship's front section, now stands as a solemn testament to the ship's decline. The soft glow of emergency lighting casts feeble beams across the corridor, its illumination unable to dispel the pervasive gloom. Maintenance hatches and access panels, once bustling with activity, now stand as rusted relics, their mechanisms frozen and their purpose forgotten. In this desolate section of the corridor, there are no doors interrupting the smooth metal walls, only empty spaces where memories of past activity once thrived. Instead, a display panel, once a source of pride and admiration, now stands as a faded reminder of the ship's former glory. The holographic projections and interactive touch screens, once vibrant with stories of past missions, now sit dormant and unused, their tales lost to the ravages of time. As you traverse the desolate expanse of the corridor, the occasional flicker of overhead lights sends haunting shadows dancing across the walls, serving as grim reminders of the ship's storied past, now lost to the depths of neglect and abandonment.
+#
+roomstate damaged
+#
+@dig Corridor <Sec 1>;sulaco_31:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yP|Y>|yort;p,|Y<|yS|Y>|ytarboard;s
+#
+p 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=As you step into this well-lit corridor, the air is filled with the faint hum of machinery and the soft glow of emergency lighting guides your way. The corridor stretches out before you, continuing to starboard. Maintenance hatches and access panels line the walls, providing access to the intricate network of systems that keep the ship operational. To the forward, a sturdy blast door leads to the Commander's Office, where the ship's commanding officer oversees operations and makes critical decisions. The door remains sealed, hinting at the importance of the discussions and deliberations that take place within. Further down the corridor, a doorway to the aft leads to the Telecomms Room, the hub of communications aboard the USS Sulaco. The door stands closed, its reinforced construction indicating the significance of the equipment housed within and the confidentiality of the information transmitted. As you make your way through the corridor, the occasional beep of a control panel and the distant hum of machinery serve as reminders of the ship's active systems, even in its current state of dormancy.
+#
+@set here/desc_damaged=As you cautiously step into this once vital corridor, now a solemn passageway echoing with the whispers of neglect, the air carries the stale scent of abandonment, mingled with the distant echoes of machinery now fallen silent. The corridor, once bustling with purpose, now stands as a silent witness to the ship's decline. The soft glow of emergency lighting casts feeble beams across the corridor, its illumination unable to dispel the pervasive gloom. Maintenance hatches and access panels, once vital conduits for the ship's operations, now stand as rusted relics, their mechanisms frozen and their purpose forgotten. To the forward, a sturdy blast door, leading to the Commander's Office, stands as a silent sentinel, its reinforced construction a stark reminder of the discussions and decisions that once shaped the ship's fate. Further down the corridor, a doorway to the aft leads to the Telecomms Room, once a hub of activity, now cloaked in silence and neglect. The door, sealed shut, serves as a grim reminder of the confidentiality of the information it once transmitted, now lost to the ravages of time. As you navigate through the desolate expanse of the corridor, the occasional beep of a malfunctioning control panel and the distant hum of machinery serve as haunting reminders of the ship's former vitality, now lost to the winds of neglect and abandonment.
+#
+roomstate damaged
+#
+@dig Commander's Office <Sec 1>;sulaco_32:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yCO|Y>|ymmander;co,|Y<|yC|Y>|yorridor;c 
+#
+co 
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=This is a distinguished chamber where the ship's commanding officer oversees operations and makes critical decisions. As you step into this well-appointed space, the air is filled with a sense of authority and purpose, despite the absence of personnel. The office is adorned with sleek metal surfaces and polished furnishings, reflecting the disciplined and efficient nature of military life aboard the USS Sulaco. A large desk sits at the center of the room, its surface clear of clutter and ready for the commander's next task. Behind the desk, a high-backed chair stands sentinel, a symbol of leadership and authority. On the walls, framed photographs and awards commemorate the ship's illustrious history and the achievements of its crew. A tactical map of the surrounding star system hangs prominently, providing a constant reminder of the challenges and responsibilities faced by the USS Sulaco and its crew. Despite the silence that pervades the office in the absence of personnel, the space hums with latent energy, waiting to spring to life with the next mission or crisis. The soft glow of ambient lighting casts a warm ambiance, adding to the sense of focus and determination that permeates the room. As you explore the Commander's Office, the occasional beep of a communication terminal and the distant hum of machinery serve as reminders of the ship's active systems, even in its current state of dormancy.
+#
+@set here/desc_damaged=As you cautiously step into this once distinguished chamber, now a solemn echo of its former grandeur, the air carries the weight of neglect, mingled with the distant echoes of machinery now fallen silent. The office, once a beacon of authority and purpose, now stands as a silent testament to the ship's decline. The soft glow of ambient lighting casts feeble rays across the space, its illumination unable to dispel the pervasive gloom. Sleek metal surfaces and polished furnishings, once symbols of efficiency and discipline, now sit tarnished and worn, their luster faded by neglect. A large desk, once a focal point of activity, now sits deserted and unused, its surface marred by dust and neglect. Behind the desk, a high-backed chair, once a symbol of leadership and authority, now stands as a silent sentinel, its significance lost amidst the ruins. On the walls, framed photographs and awards, once proud displays of achievement, now hang crooked and forgotten, their stories lost to the passage of time. A tactical map of the surrounding star system, once a source of strategic insight, now hangs faded and neglected, its relevance faded by the ship's descent into disrepair. Despite the silence that pervades the office in the absence of personnel, the space hums with latent energy, a ghostly echo of its former vitality. As you explore the Commander's Office, the occasional beep of a malfunctioning communication terminal and the distant hum of machinery serve as haunting reminders of the ship's former glory, now lost to the depths of neglect and abandonment.
+#
+roomstate damaged
+#
+c 
+#
+@dig Telecomms <Sec 1>;sulaco_33:typeclasses.myextendedroom.MyExtendedRoom=|Y<|yTE|Y>|ylecomms;te,|Y<|yC|Y>|yorridor;c 
+#
+te
+#
+@tag here=NMV_Sulaco:RoomZone
+#
+@set here/caption = N.M.V. Sulaco
+#
+@set here/desc=As you step into this dimly lit chamber, the hum of electronic equipment fills the air, punctuated by the occasional beep of consoles awaiting input. Rows of computer terminals line the walls, their screens displaying intricate data streams and encrypted communications. A central control panel dominates the room, its array of buttons and switches standing ready to facilitate communication with distant outposts and vessels. Cables snake across the floor, connecting various components of the communications network and disappearing into wall-mounted interfaces. The air is tinged with the faint scent of ozone, a lingering reminder of the electrical currents coursing through the room.
+#
+@set here/desc_damaged=As you cautiously step into this chamber, the dim light barely illuminates the scene, revealing the eerie silence broken only by the occasional groan of metal under strain. Rows of computer terminals, now cracked and flickering sporadically, line the walls, their screens displaying fragmented data streams amidst static and distortion. A central control panel, scarred by shrapnel and corrosion, looms ominously, its once gleaming buttons and switches now tarnished and unresponsive. Frayed cables litter the floor, some severed and sparking dangerously, while others dangle precariously from damaged conduits overhead. The air carries the acrid scent of burnt circuitry, a haunting reminder of the catastrophic damage inflicted upon this once bustling hub of communication.
+#
+roomstate damaged
+#
+#
+#####################################
+# Make Ship Object and Doors
+#
+#####################################
+#
+@create |bNMV Sulaco|n;sulaco:space.typeclasses.ship.Ship
+#
+@set sulaco/desc=The USS Sulaco exudes exudes an aura of military prowess, its sleek hull adorned with the markings of the United States Colonial Marine Corps. From its armored plating to its bristling array of weapon emplacements, every inch of this vessel speaks to its role as a formidable warship. As you approach, the massive bulk of the Sulaco looms overhead, casting a shadow that stretches far into the depths of space. Its engines thrum with latent power, a silent promise of the incredible speed and agility that lies dormant within its massive frame. Yet, for all its strength and sophistication, the ship bears the scars of battle, evidence of the countless conflicts it has weathered in the unforgiving depths of space. Scorch marks mar its hull, and patches of hastily applied armor serve as reminders of the dangers that lurk in the depths of outer space.
+#
+@set sulaco/caption=is a formidable symbol of space exploration
+#
+@set sulaco/get_err_msg=Even putting your back into it, there is just no way you could ever budge such an immensely heavy object.
+#
+@set sulaco/entry_list={}
+#
+@tel sulaco_1
+#
+@open |Y<|yBU|Y>|ylkhead Door;bu:space.typeclasses.ship_exit.ShipExit=here
+#
+@py door=self.location.search('bu');ship=self.search('sulaco');door.db.shipobject=f"#{ship.id}";ship.db.entry_list['airlock']=f"#{self.location.id}";door.locks.add(f"traverse:not inspace(#{ship.id})")
+#
+@tel sulaco_12
+#
+@open |Y<|yBU|Y>|ylkhead Door;bu:space.typeclasses.ship_exit.ShipExit=here
+#
+@py door=self.location.search('bu');ship=self.search('sulaco');door.db.shipobject=f"#{ship.id}";ship.db.entry_list['hanger_p']=f"#{self.location.id}";door.locks.add(f"traverse:not inspace(#{ship.id})")
+#
+@tel sulaco_13
+#
+@open |Y<|yBU|Y>|ylkhead Door;bu:space.typeclasses.ship_exit.ShipExit=here
+#
+@py door=self.location.search('bu');ship=self.search('sulaco');door.db.shipobject=f"#{ship.id}";ship.db.entry_list['hanger_s']=f"#{self.location.id}";door.locks.add(f"traverse:not inspace(#{ship.id})")
+#
+############################
+# Drop final ship object in 
+# docking bay of starting area
+#
+############################
+#
+@tel docking bay 
+#
+drop sulaco 
+#
+############################
+#
+# Create space-control objects 
+# (engine, helm, transmat)
+#
+############################
+#
+@create Helm Console;console:space.typeclasses.ship_helmconsole.ShipHelmConsole
+#
+@create Engine:space.typeclasses.ship_engine.Engine
+#
+@create Trans-Mat Pad;transmat:space.typeclasses.ship_transmat.ShipTransmat
+#
+@py s=self.search("sulaco"); h=self.search("helm"); h.db.ship_obj=f"#{s.id}"
+#
+@tel sulaco_28 
+#
+drop helm 
+#
+@py e=self.search("engine"); h=self.search("helm"); h.db.engine_obj=f"#{e.id}"
+#
+@py h=self.search("helm");h.db.ship_zone="nmv_sulaco"
+#
+launch 
+#
+dock luna 
+#
+@tel sulaco_4
+#
+drop engine 
+#
+@tel sulaco_10
+#
+drop transmat 
+#
+@py t=self.search("transmat"); import evennia; s=evennia.search_object("sulaco", typeclass="space.typeclasses.ship.Ship"); from world.space.models import SpaceDB; ship = SpaceDB.objects.filter(db_key__exact=f"#{s[0].id}"); ship[0].db_transmat=t.id; ship[0].save()
+#
+@tel docking bay 
+#
+# End in room #9

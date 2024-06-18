@@ -1,0 +1,167 @@
+# Starting Area for Dimensions : creation batch file
+# This batch file sets up the starting Area
+#
+# To load the file, use: @batchcommand world.batch_files.S003_Earth_1
+# 	 
+#   Get list of rooms in Zone:
+#     import evennia
+#     rooms = evennia.search_tag("Earth_1", category="RoomZone")
+#	  self.msg(rooms)
+#
+#
+@dig |[M|cQuantum Escapes|n;earth01_01:typeclasses.myextendedroom.MyExtendedRoom
+#
+@tel earth01_01
+#
+@set here/desc=The room buzzes with quiet efficiency, its high ceilings and sleek, metallic walls reflecting the soft glow of blue and white lights. Transparent screens display destinations from across the globe and beyond, while robotic assistants glide smoothly between travelers, offering help. A vast, circular platform occupies the center, surrounded by designated zones for different types of transport, from hyperloop capsules to teleportation pads. The air is filled with a faint hum of advanced machinery, underscored by the distant murmur of excited conversations in various languages.
+#
+@create Trans-Mat Pad;transmat:space.typeclasses.ship_transmat.ShipTransmat
+#
+drop transmat 
+#
+@py from world.space.models import SpaceDB; earth = SpaceDB.objects.filter(db_key__exact='earth'); obj=self.search("transmat"); earth[0].db_transmat=obj.id;earth[0].save()
+#
+@py self.location.tags.add("Earth_1", category="RoomZone")
+#
+@detail screen=The screen shifts between several travel advertisements and then stops on a list of destinations that could be planets or moons within travel distance.
+#
+@dig Main Street;earth01_02:typeclasses.myextendedroom.MyExtendedRoomOutside=<O>ut;o,|mQuantum Escapes |c<|mQE|c>;qe
+#
+o 
+#
+@py self.location.tags.add("outside", category="location")
+#
+@py self.location.tags.add("Earth", category="location")
+#
+@py self.location.tags.add("Earth_1", category="RoomZone")
+#
+@set here/desc=Hovering advertisements and holographic billboards flash vibrant scenes of exotic worlds and breathtaking adventures, each promising the ultimate teleportation vacation experience. Nearbyh, the imposing yet inviting entrance to Quantum Escapes beckons. Its facade is an architectural masterpiece of glass and steel, with the company's logo--a stylized, interlocking Q and E--illuminated in a soft, welcoming light. Automated doors slide open with a whisper, revealing a glimpse of the high-tech lobby within.
+#
+@dig Main Street;earth01_03:typeclasses.myextendedroom.MyExtendedRoomOutside=<N>orth;n,<S>outh;s
+#
+n 
+# 
+@set here/desc=The street is flanked by rows of businesses that have served the community for decades. The pharmacy's marquee proudly declares, "Est. 1923," and the cinema next door is showing the latest blockbuster. Classic cars line the street, their polished surfaces gleaming under the streetlights. Pedestrians stroll along the sidewalks, some peering into shop windows, others heading to their destinations.
+#
+@py self.location.tags.add("outside", category="location")
+#
+@py self.location.tags.add("Earth", category="location")
+#
+@py self.location.tags.add("Earth_1", category="RoomZone")
+#
+@dig Main Street;earth01_04:typeclasses.myextendedroom.MyExtendedRoomOutside=<N>orth;n,<S>outh;s 
+#
+n 
+#
+@set here/desc=A lively and colorful corner of Main Street that draws in kids and adults alike. The exterior is decorated with bright, flashing lights and a large sign that reads "Game Zone" in bold letters. As you step inside, the sound of electronic beeps and music fills the air, mixed with the cheers of players. Rows of arcade machines line the walls, featuring classic games like Pac-Man, Space Invaders, and Street Fighter. In the center, there's a small snack bar offering popcorn, candy, and soda. The atmosphere is electric, filled with the excitement of friendly competition.
+#
+@py self.location.tags.add("outside", category="location")
+#
+@py self.location.tags.add("Earth", category="location")
+#
+@py self.location.tags.add("Earth_1", category="RoomZone")
+#
+@dig Town Hall;earth01_05:typeclasses.myextendedroom.MyExtendedRoomOutside=<T>own Hall;t,<O>ut;o 
+#
+t 
+#
+@set here/desc=This stands as a symbol of the town's governance and history. The stately building features a tall clock tower and a wide staircase leading up to its entrance. Inside, the walls are adorned with photographs documenting the town's past. The mayor's office and various municipal departments are housed here, busy with the day's work.
+#
+@py self.location.tags.add("Earth", category="location")
+#
+@py self.location.tags.add("Earth_1", category="RoomZone")
+#
+@tel earth01_02 
+#
+@dig Main Street;earth01_06:typeclasses.myextendedroom.MyExtendedRoomOutside=<S>outh;s,<N>orth;n  
+#
+s 
+#
+@set here/desc=The storefront nearby is adorned with vintage concert posters and a neon sign that flickers "Records & Tapes." Inside, the shop is a nostalgic treasure trove, with rows of wooden crates filled with vinyl records, cassette tapes, and CDs. The smell of old vinyl and faint notes of classic rock playing in the background create a cozy, inviting atmosphere. A listening station with headphones allows customers to sample their finds, and a small stage in the corner hosts live acoustic sessions on weekends.
+#
+@py self.location.tags.add("outside", category="location")
+#
+@py self.location.tags.add("Earth", category="location")
+#
+@py self.location.tags.add("Earth_1", category="RoomZone")
+#
+@dig Main Street;earth01_07:typeclasses.myextendedroom.MyExtendedRoomOutside=<S>outh;s,<N>orth;n  
+#
+s 
+#
+@set here/desc=The vibrant artery of the town, where the charm of the 1990s meets the hustle and bustle of daily life. The wide, tree-lined street is flanked by a mix of old brick buildings and modern storefronts, each with its own unique character. Colorful awnings and neon signs beckon shoppers into boutiques, diners, and specialty shops. The sidewalk is alive with activity: people strolling, kids on bicycles, and friends chatting at outdoor tables. The pleasant sound of a busker playing an acoustic guitar drifts through the air, adding to the lively atmosphere. Street lamps, adorned with hanging flower baskets, cast a warm glow as evening approaches, making Main Street a perfect spot for both daytime errands and nighttime outings.
+#
+@py self.location.tags.add("outside", category="location")
+#
+@py self.location.tags.add("Earth", category="location")
+#
+@py self.location.tags.add("Earth_1", category="RoomZone")
+#
+@dig Residential Lane;earth01_08:typeclasses.myextendedroom.MyExtendedRoomOutside=<E>ast;e,<W>est;w 
+#
+e 
+#
+@set here/desc=A serene neighborhood with tree-lined streets and charming houses. Each home boasts a well-manicured lawn, complete with flower beds and white picket fences. The street is dotted with children playing hopscotch and riding bicycles, while neighbors chat amiably over hedges. It's a picture-perfect slice of small-town life.
+#
+@py self.location.tags.add("outside", category="location")
+#
+@py self.location.tags.add("Earth", category="location")
+#
+@py self.location.tags.add("Earth_1", category="RoomZone")
+#
+w 
+#
+@dig Park Avenue;earth01_09:typeclasses.myextendedroom.MyExtendedRoomOutside=<W>est;w,<E>ast;e 
+#
+w 
+#
+@set here/desc=A quieter street that leads to the town's green spaces. The avenue is lined with tall oak trees, their branches forming a canopy overhead. Small boutiques and specialty stores occupy the buildings, offering handcrafted goods and unique finds. The sounds of children playing and birds chirping can be heard from the nearby park.
+#
+@py self.location.tags.add("outside", category="location")
+#
+@py self.location.tags.add("Earth", category="location")
+#
+@py self.location.tags.add("Earth_1", category="RoomZone")
+#
+@dig Downtown Plaza;earth01_10:typeclasses.myextendedroom.MyExtendedRoomOutside=<P>laza;p,<N>orth;n 
+#
+p
+#
+@set here/desc=The vibrant heart of the town, brimming with activity. Brick buildings with large windows and neon signs line the streets, showcasing a variety of shops and eateries. The smell of fresh bread from the bakery mixes with the enticing aroma of coffee from the local cafe. A vintage fountain sits at the center of the plaza, surrounded by wooden benches and well-tended flower beds.
+#
+@py self.location.tags.add("outside", category="location")
+#
+@py self.location.tags.add("Earth", category="location")
+#
+@py self.location.tags.add("Earth_1", category="RoomZone")
+#
+@tel earth01_02
+#
+@dig Community Park;earth01_11:typeclasses.myextendedroom.MyExtendedRoomOutside=<P>ark;p,<W>est;w 
+#
+p 
+#
+@set here/desc=A sprawling green space that serves as the town's recreational hub. A large playground, picnic areas, and a serene pond with a small bridge are the park's main features. Families gather for picnics, children play on the swings, and joggers make their way along the winding paths. It's a haven of tranquility amidst the bustling town.
+#
+@py self.location.tags.add("outside", category="location")
+#
+@py self.location.tags.add("Earth", category="location")
+#
+@py self.location.tags.add("Earth_1", category="RoomZone")
+#
+w 
+#
+s 
+#
+@dig Cedar Street;earth01_12:typeclasses.myextendedroom.MyExtendedRoomOutside=<E>ast;e,<W>est;w
+#
+e 
+#
+@set here/desc=A residential area known for its stately homes and quiet ambiance. The houses here are larger, with expansive front yards and tall cedar trees that give the street its name. It's a peaceful part of town where residents enjoy leisurely walks and the occasional neighborhood gathering.
+#
+@py self.location.tags.add("outside", category="location")
+#
+@py self.location.tags.add("Earth", category="location")
+#
+@py self.location.tags.add("Earth_1", category="RoomZone")
+#
