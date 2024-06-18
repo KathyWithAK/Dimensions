@@ -54,4 +54,6 @@ nosetests.xml
 
 # VSCode config
 .vscode
+
+# Evennia server config
 server/conf/settings.py
