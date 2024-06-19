@@ -180,7 +180,7 @@ class WeatherScript(Script):
             if sunrise:
                 current_time = room_time.time()
                 time_d = datetime.combine(date.min, current_time) - datetime.combine(date.min, sunrise)
-                if timedelta(seconds=-1 * (self.interval + 1)) <= time_d <= timedelta(seconds=(self.interval + 1)):
+                if timedelta(seconds=-1 * (self.interval + 0)) <= time_d <= timedelta(seconds=(self.interval + 0)):
                     return True     
         return False
     
@@ -192,48 +192,10 @@ class WeatherScript(Script):
             if sunset:
                 current_time = room_time.time()
                 time_d = datetime.combine(date.min, current_time) - datetime.combine(date.min, sunset)
-                if timedelta(seconds=-1 * (self.interval + 1)) <= time_d <= timedelta(seconds=(self.interval + 1)):
+                if timedelta(seconds=-1 * (self.interval + 0)) <= time_d <= timedelta(seconds=(self.interval + 0)):
                     return True    
         return False
 
-    # def room_weather_message(self):
-    #     """
-    #     Returns a random weather message based on the given season, time of day, and current weather.
-    #     """    
-    #     rooms = evennia.search_tag(key=('outside'), category='location')
-    #     for r in rooms:
-    #         if self.is_sunrise():
-    #             r.msg_contents(random.choice(self.weather_messages['sunrise']))
-    #         elif self.is_sunset():
-    #             r.msg_contents(random.choice(self.weather_messages['sunset']))
-    #         elif random. randint(1, self.MESSAGE_FREQUENCY) == 1:
-    #             season = r.get_season()
-    #             time_of_day = r.get_time_of_day()
-    #             curr_weather = r.get_curr_weather()
-    #             if curr_weather:
-    #                 curr_weather = curr_weather.replace(' ','').lower()
-
-    #             messages = []
-    #             if season in self.weather_messages.keys():
-    #                 messages += self.weather_messages[season]
-    #             if time_of_day in self.weather_messages.keys():
-    #                 messages += self.weather_messages[time_of_day]
-    #             if curr_weather in self.weather_messages.keys():
-    #                 messages += self.weather_messages[curr_weather]
-    #             if f"{season}.{time_of_day}" in self.weather_messages.keys():
-    #                 messages += self.weather_messages[f"{season}.{time_of_day}"]
-    #             if f"{season}.{curr_weather}" in self.weather_messages.keys():
-    #                 messages += self.weather_messages[f"{season}.{curr_weather}"]
-    #             if f"{time_of_day}.{curr_weather}" in self.weather_messages.keys():
-    #                 messages += self.weather_messages[f"{time_of_day}.{curr_weather}"]
-    #             if f"{season}.{time_of_day}.{curr_weather}" in self.weather_messages.keys():
-    #                 messages += self.weather_messages[f"{season}.{time_of_day}.{curr_weather}"]
-
-    #             print(season + '.' + time_of_day + '.' + curr_weather)
-    #             msg = random.choice(messages)
-    #             if len(msg) > 0:
-    #                 r.msg_contents(random.choice(messages))
-    
     def room_weather_message(self):
       """
       Returns a random weather message based on the given season, time of day, and current weather.
@@ -264,45 +226,166 @@ class WeatherScript(Script):
         return messages
 
     weather_messages = {
+
+        ########## SUNRISE & SUNSET #########################################
+
         'sunrise': [
             "|rWelcome the dawn, where new beginnings unfold beneath the gentle embrace of the rising sun.|n",
+            "|rThe sun slowly peers over the distant horison.|n",
+            "|rBirds begin to chirp with the first rays of morning.|n",
+            "|rThe sun rises, casting a slow spread of light that filters through the morning dew and turns it to a red-gold as time passes.|n",
+            "|rThe sky overhead turns a bruised red with the coming of dawn.|n",
+            "|rIn the early dawn, when you can first see clearly, the insects lie everywhere on the ground.|n",
+            "|rA white fog has rolled in almost lazily before dawn, and covers the ground as the world wakes up.|n",
         ],
         'sunset': [
             "|rEmbrace the tranquility as the sun sets, knowing tomorrow holds new promises and possibilities.|n",
+            "|rThe sun slowly sinks below the horizon and then is gone.|n",
+            "|rThe sun touches the horizon as the sky overhead thrns a bruised red.|n",
         ],
+
+        ########## SEASONAL #########################################
+        
         'summer.morning': [
             "The warmth of the sun shines down, promising a bright day ahead.", 
             "The warmth of the early sun kisses the dewy grass.",
             "The warmth of the early sun kisses the dewy grass, as birdsong fills the fresh morning air.",
         ],
+        'summer.morning.mostlycloudy': [
+            "The warmth of the early sun gently filters through gaps in the dense cloud cover, creating a soft, diffused light over the dewy grass.",
+        ],
+
         'summer.afternoon': [
             "Various clouds float across the sky above, casting fleeting shadows as they drift in front of the sun.",
             "The scorching sun bathes the landscape in a golden hue.",
             "The scorching sun bathes the landscape in a golden hue, while a gentle breeze rustles through the leaves of sun-dappled trees.",
         ],
+        'summer.afternoon.mostlycloudy': [
+            "Despite the clouds, the afternoon heat still manages to break through intermittently, casting shifting patterns of light and shadow across the landscape.",
+            "Fluffy white clouds dot the azure sky.",
+            "As the afternoon progresses, clouds build.",
+            "Towering grey clouds cover the westerly sun. The clouds come lower, filling the sky.",
+            "Clouds gather and the wind stirs the dead foliage on the ground, making it hiss like a shaman's rattle.",
+            "You can see the sun behind the clouds, a point of brighter color.",
+            "Clouds have gathered unexpectedly, and are now growing darker.",
+        ],
+        'summer.afternoon.sunny': [
+            "The day is bright and clear, and a gentle breeze blows at lower elevations.",
+            "The woodland creatures are uncomfortably quiet today. No squirrels chatter, and the birds are silent.",
+            "The air warms until you are hot but a slight breeze playing on the plant tops rustles your hair and keeps it bearable.",
+        ],   
+
         'summer.evening': [
             "A few more clouds begin to cover the moon in the darkening sky, casting eerie images over the ground.",
             "A symphony of crickets accompanies the vivid sunset, painting the sky with hues of orange and pink over the tranquil horizon.",
         ],
+        'summer.evening.mostlycloudy': [
+            "As the sun sets behind the thickening clouds, a soft glow emerges on the horizon, painting the sky with hues of muted gold and lavender.",
+        ],
+
         'summer.night': [
             "A vast array of stars sparkle above you, illuminating the serene night.",
             "A symphony of crickets accompanies the twinkling stars above.",
             "A vast array of stars sparkle above you, illuminating the serene night, while distant laughter drifts from a bonfire under the moonlit sky.",
         ],
-
-        'summer.morning.mostlycloudy': [
-            "The warmth of the early sun gently filters through gaps in the dense cloud cover, creating a soft, diffused light over the dewy grass.",
-        ],
-        'summer.afternoon.mostlycloudy': [
-            "Despite the clouds, the afternoon heat still manages to break through intermittently, casting shifting patterns of light and shadow across the landscape.",
-        ],
-        'summer.evening.mostlycloudy': [
-            "As the sun sets behind the thickening clouds, a soft glow emerges on the horizon, painting the sky with hues of muted gold and lavender.",
-        ],
         'summer.night.mostlycloudy': [
             "Despite the cloud cover, the occasional break reveals a glimmering tapestry of stars above, lending a mystical aura to the serene night.",
+            "Few stars can be seen between the gathering clouds.",
+            "The clouds part for a moment and you catch a glimpse of the moon.",
+            "Thin clouds cover the high stars most of the time.",
+            "Fluffy white clouds can be seen faintly against the indigo sky, lit by the bright moon.",
+            "Clouds gather in the night until the sky is overcast. The thick gray clouds hide the sky.",
+        ],
+        'summer.night.clear': [
+            "A shooting star streaks across the starry sky.",
+            "The thin crescent of the new moon sheds very little light for your journey, but the darkness it allows enables you to enjoy the glory of the heavens.",
+            "Overhead a bat buzzes across the night sky, changes direction suddenly in its hunt, and then flies off in another direction.",
+            "A big owl passes and air moves against your face though you hear no sound; a dark shape briefly blocks the stars and is gone.",
+            "Countless twinkling stars watch over you from far above.",                                       
         ],
 
+        ########## MORNING / AFTERNOON / EVENING / NIGHT ####################
+    
+        'afternoon.slightchanceshowersandthunderstorms': [
+            "Although it is still day, it gets very dark. You can see lightning jumping between the clouds and hear the thunder.",
+        ],
+        'afternoon.showersandthunderstorms': [
+            "The lightning cracks overhead, lighting the sky as bright as daylight for a few seconds. Then the dark descends again and the thunder shakes the very air.",
+        ],           
+
+        'evening.rainshowerslikely.': [
+            "Shortly a heavy fog has risen over your heads, bringing with it intensified smells and sounds of the evening.",
+        ],
+
+        'night.scatteredrainshowers': [
+            "Drizzle falls across the silent night.",
+        ],
+        'night.scatteredsnowshowers': [
+            "Snow begins to fall on this starless night.",
+        ],
+        'night.isolatedsnowshowers': [
+            "A gentle wind blows the falling snow across the dark landscape.",
+        ],        
+
+        ########## WEATHER ONLY #############################################
+                
+        'chancelightsnow': [
+            "The steel-grey sky is barely visible through the blast of white the surrounds you.",
+            "You hear muffled thumps as wet snow calls from the branches of several nearby trees.",
+            "Snow-covered grasses extend to the horizon, as far as your eyes can see.",
+        ],
+        'chancerainshowers': [
+            "Fog drifts through the tree line and black branch fingers trace paths through it.",
+            "The air is instantly cooler, and the smell of grass and heat is replaced by the damp, pleasant smell of the rain itself.",
+        ],
+        'chanceshowersandthunderstorms': [
+            "The fog rolls over the yellow flowers and the clearing and surrounds your feet, gathering and breaking like ocean waves.",
+        ],
+        'isolatedshowersandthunderstorms': [
+            "You cannot hear or smell the storm, but you can feel its presence: massive, heavy and brooding.",
+            "Bright flashes spark within the clouds, and occasionally wide arcing bolts of lightning reach out over the clouds and touch down somewhere over the horizon.",
+            "In the distance, you hear loud thunderclaps as rain continues to fall.",
+        ],
+        'isolatedsnowshowers': [
+            "The howling cry of the furious blizzard echoes like a wolf's mournful song across the air.",
+            "Whisps of snow swirl with the breeze.",
+            "The wind has died down, and in its place is the steady beat of rain upon the ground.",
+            "A gigantic flash of lightning is followed immediately by a deafening clap of thunder and with a rush, the rain is upon you.",
+        ],        
+        'rainshowers': [
+            "Sheets of rain pour down, blinding you. Water gets into everything, making pools in even slight depressions in your garments.",
+            "What starts with a few drops, fat and heavy, quickly becomes a steady patter as a gentle rain begins to fall.",
+            "The air is instantly cooler, and the smell of grass and heat is replaced by the damp, pleasant smell of the rain itself.",
+            "The rain comes down heavier than before.",
+            "The rain lashes down from the sky, driven by the stormy winds into a stinging torrential downpour.",            
+        ],
+        'rainshowerslikely': [
+            "The visibility is bad, as a fresh wave of fog blows by.",
+            "There is a dampness in the air that coats everything in dew.",
+            "Fog has settled in during the night. Being on watch consists of straining to see further than twenty feet in any direction.",
+            "The air is chill and the morning fog is dense. You can see your breath.",
+            "Mist and fog seem to rise out of the very ground and thicken the air around you with an impenetrable gray blanket.",
+        ],    
+        'scatteredrainshowers': [
+            "When the rain begins to fall, it falls in great heavy drops.",
+            "There is a storm on the horizon, a wide gray and black band that stretches as in either direction.",
+            "The wind has died down, and in its place is the steady beat of rain upon the ground.",
+            "The rain begins gently but soon it is pelting down.",      
+        ],
+        'showersandthunderstorms': [
+            "A gigantic flash of lightning is followed immediately by a deafening clap of thunder and with a rush, the rain is upon you.",
+            "What starts with a few drops, fat and heavy, quickly becomes a steady patter as a gentle rain begins to fall.",
+        ],       
+        'slightchanceshowersandthunderstorms': [
+            "The sky flashes white with lightning for a moment and then there is an ear-rattling thunderclap.",
+            "The lightning cracks overhead, lighting the sky as bright as daylight for a few seconds. Then the dark descends again and the thunder shakes the very air.",
+            "A small patch of mist hangs above the ground, although the weather does not feel cool enough for fog or anything similar.",
+        ],
+        'scatteredsnowshowers': [
+            "A harsh and cruel wind drives snow at stinging and blinding speeds across the icy landscape.",
+            "A grainy snow covers the ground as a chill in the air catched your lungs when you breath deeply.",
+            "Snow blows over the ground, the currents and eddies of a frozen wind-borne river.",
+        ],
     }
 
 """
