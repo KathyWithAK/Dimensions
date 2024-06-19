@@ -19,13 +19,19 @@ FORM = '''
 | w30wwwwwwwwwwwwwwwwwwwww                                           w32wwww w33wwwww |
 |   w31wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww |
 '-------------------------------------------------------------------------------------'
+| w34wwwwwwwwwwwwwwwwwwwww                                           w36wwww w37wwwww |
+|   w35wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww |
+'-------------------------------------------------------------------------------------'
+| w38wwwwwwwwwwwwwwwwwwwww                                           w40wwww w41wwwww |
+|   w39wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww |
+'-------------------------------------------------------------------------------------'
 | Sun Information           | Moon Information                                        |
 |                           |                                                         |
 | Sunrise    : w19wwwwwwwww | Moon : w23wwwwwwwwwwww Phase       : w26wwwwwwwwwwwwwww |
 | Noon       : w20wwwwwwwww | Age  : w24wwwwwwwwwwww Distance    : w27wwwwwwwwwwwwwww |
 | Sunset     : w21wwwwwwwww | Angle: w25wwwwwwwwwwww Illumination: w28wwwwwwwwwwwwwww |
 | Day Length : w22wwwwwwwww |                                                         |
-'---------------------------'---------------------------------------------------------'
+'---------------------------'-------------------------.-------------------------------'
 |  Snapshot: w29wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww |
 '-----------------------------------------------------'  
 '''

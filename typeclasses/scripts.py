@@ -12,10 +12,10 @@ just overloads its hooks to have it perform its function.
 
 """
 from timezonefinder import TimezoneFinder
-from datetime import datetime
+from datetime import datetime, timedelta, date
 from pytz import timezone # importing timezone from pytz module
 from django.conf import settings
-import random
+import random, re
 
 import evennia
 from evennia.scripts.scripts import DefaultScript
@@ -161,20 +161,39 @@ class WeatherScript(Script):
 
             self.room_weather_message()
 
+    def str_to_date(self, datestr):
+        match = re.search("(\d{1,2}):(\d{2}):(\d{2})\s([AMPamp]{2})", datestr)
+        if match:
+            time_str = f"{int(match.group(1)):02d}:{match.group(2)}:{match.group(3)} {match.group(4)}"          
+            time_str = datetime.strptime(time_str, '%I:%M:%S %p').time()
+            if isinstance(time_str, type(datetime.now().time())):
+                return time_str
+            else:
+                return None
+        return None
+    
     def is_sunrise(self, room):
         room_time = room.get_room_time()
         if room.isEarth and room.isOutside:
             weather_data_block = room.get_weather_from_script()
-            if f"{room_time.hour}:{room_time.strftime('%M:%S %p')}" == weather_data_block['sun_data']['sunrise']:
-                return True
+            sunrise = self.str_to_date(weather_data_block['sun_data']['sunrise'])
+            if sunrise:
+                current_time = room_time.time()
+                time_d = datetime.combine(date.min, current_time) - datetime.combine(date.min, sunrise)
+                if timedelta(seconds=-1 * (self.interval + 1)) <= time_d <= timedelta(seconds=(self.interval + 1)):
+                    return True     
         return False
     
     def is_sunset(self, room):
         room_time = room.get_room_time()
         if room.isEarth and room.isOutside:
             weather_data_block = room.get_weather_from_script()
-            if f"{room_time.hour}:{room_time.strftime('%M:%S %p')}" == weather_data_block['sun_data']['sunset']:
-                return True
+            sunset = self.str_to_date(weather_data_block['sun_data']['sunset'])
+            if sunset:
+                current_time = room_time.time()
+                time_d = datetime.combine(date.min, current_time) - datetime.combine(date.min, sunset)
+                if timedelta(seconds=-1 * (self.interval + 1)) <= time_d <= timedelta(seconds=(self.interval + 1)):
+                    return True    
         return False
 
     # def room_weather_message(self):
@@ -220,21 +239,22 @@ class WeatherScript(Script):
       Returns a random weather message based on the given season, time of day, and current weather.
       """
       rooms = evennia.search_tag(key=('outside'), category='location')
-      for room in rooms:
-          if self.is_sunrise(room):
-              message = random.choice(self.weather_messages['sunrise'])
-          elif self.is_sunset(room):
-              message = random.choice(self.weather_messages['sunset'])
+      for r in rooms:
+          if self.is_sunrise(r):
+              r.msg_contents(random.choice(self.weather_messages['sunrise']))
+              return
+          elif self.is_sunset(r):
+              r.msg_contents(random.choice(self.weather_messages['sunset']))
+              return
           elif random. randint(0, self.MESSAGE_FREQUENCY) == 1:
-              season = room.get_season()
-              time_of_day = room.get_time_of_day()
-              curr_weather = room.get_curr_weather()
-              curr_weather = curr_weather.replace(' ', '').lower()
+              season = r.get_season()
+              time_of_day = r.get_time_of_day()
+              curr_weather = r.get_curr_weather().replace(' ', '').lower()
 
               messages = self.get_weather_messages(season, time_of_day, curr_weather)
               if messages:
                   message = random.choice(messages)
-                  room.msg_contents(message)
+                  r.msg_contents(message)
 
     def get_weather_messages(self, season, time_of_day, curr_weather):
         messages = []
@@ -245,12 +265,10 @@ class WeatherScript(Script):
 
     weather_messages = {
         'sunrise': [
-            "The sun casts a warm glow over the land.",
-            "Welcome the dawn, where new beginnings unfold beneath the gentle embrace of the rising sun.",
+            "|rWelcome the dawn, where new beginnings unfold beneath the gentle embrace of the rising sun.|n",
         ],
         'sunset': [
-            "The sun paints the sky with hues of crimson and gold.",
-            "Embrace the tranquility as the sun sets, knowing tomorrow holds new promises and possibilities.",
+            "|rEmbrace the tranquility as the sun sets, knowing tomorrow holds new promises and possibilities.|n",
         ],
         'summer.morning': [
             "The warmth of the sun shines down, promising a bright day ahead.", 

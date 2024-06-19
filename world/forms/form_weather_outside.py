@@ -19,6 +19,12 @@ FORM = '''
 | w20wwwwwwwwwwwwwwwwwwwww                                           w22wwww w23wwwww |
 |   w21wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww |
 '-------------------------------------------------------------------------------------'
+| w24wwwwwwwwwwwwwwwwwwwww                                           w26wwww w27wwwww |
+|   w25wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww |
+'-------------------------------------------------------------------------------------'
+| w28wwwwwwwwwwwwwwwwwwwww                                           w30wwww w31wwwww |
+|   w29wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww |
+'-----------------------------------------------------.-------------------------------'
 |  Snapshot: w19wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww |
 '-----------------------------------------------------' 
 '''

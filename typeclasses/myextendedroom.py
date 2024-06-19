@@ -521,23 +521,17 @@ class MyExtendedRoomWeather(Command):
             dew_temp_c, dew_temp_f = weather_utils.get_celcius_fahrenheit(
                 weather_period['dewpoint']['value'], weather_period['dewpoint']['unit'])
 
-            change_of_rain = weather_period['probabilityOfPrecipitation']['value']
+            change_of_rain = weather_period['probabilityOfPrecipitation']['value'] or 0
             relative_humidity = weather_period['relativeHumidity']['value']
 
-            row_2_c, row_2_f = weather_utils.get_celcius_fahrenheit(
-                weather_data['weatherPeriods'][1]['temperature'],
-                weather_data['weatherPeriods'][1]['temperatureUnit'])
-            row_2_name = weather_data['weatherPeriods'][1]['name']
-            row_2_desc = weather_data['weatherPeriods'][1]['shortForecast']
-            row_3_c, row_3_f = weather_utils.get_celcius_fahrenheit(
-                weather_data['weatherPeriods'][2]['temperature'],
-                weather_data['weatherPeriods'][2]['temperatureUnit'])
-            row_3_name = weather_data['weatherPeriods'][2]['name']
-            row_3_desc = weather_data['weatherPeriods'][2]['shortForecast']
-            row_4_c, row_4_f = weather_utils.get_celcius_fahrenheit(weather_data['weatherPeriods'][3]['temperature'],
-                                                                weather_data['weatherPeriods'][3]['temperatureUnit'])
-            row_4_name = weather_data['weatherPeriods'][3]['name']
-            row_4_desc = weather_data['weatherPeriods'][3]['shortForecast']
+            predictions = []
+            for wp in weather_data['weatherPeriods']:
+                weather_period = {}
+                weather_period['c'], weather_period['f'] = weather_utils.get_celcius_fahrenheit(
+                    wp['temperature'], wp['temperatureUnit'])
+                weather_period['name'] = wp['name']
+                weather_period['desc'] = wp['shortForecast']
+                predictions.append(weather_period)
 
             updated_date = weather_last_updated
             if updated_date:
@@ -565,14 +559,14 @@ class MyExtendedRoomWeather(Command):
                     8:  f"{dew_temp_c:.1f}^C",
                     9:  f"{change_of_rain} %",
                     10: f"{relative_humidity} %", 
-                    11: f"{row_2_name}",
-                    12: f"{row_2_desc}",
-                    13: f"{row_2_f:.1f}^F",
-                    14: f"{row_2_c:.1f}^C",
-                    15: f"{row_3_name}",
-                    16: f"{row_3_desc}",
-                    17: f"{row_3_f:.1f}^F",
-                    18: f"{row_3_c:.1f}^C",
+                    11: f"{predictions[1]['name']}",
+                    12: f"{predictions[1]['desc']}",
+                    13: f"{predictions[1]['f']:.1f}^F",
+                    14: f"{predictions[1]['c']:.1f}^C",
+                    15: f"{predictions[2]['name']}",
+                    16: f"{predictions[2]['desc']}",
+                    17: f"{predictions[2]['f']:.1f}^F",
+                    18: f"{predictions[2]['c']:.1f}^C",
                     19: f"{sun_data['sunrise']}",
                     20: f"{sun_data['solar_noon']}",
                     21: f"{sun_data['sunset']}",
@@ -584,10 +578,18 @@ class MyExtendedRoomWeather(Command):
                     27: f"{moon_data['distance']:.1f} mil",
                     28: f"{moon_data['illumination']:.2f} %",
                     29: f"{updated_date}",
-                    30: f"{row_4_name}",
-                    31: f"{row_4_desc}",
-                    32: f"{row_4_f:.1f}^F",
-                    33: f"{row_4_c:.1f}^C",                    
+                    30: f"{predictions[3]['name']}",
+                    31: f"{predictions[3]['desc']}",
+                    32: f"{predictions[3]['f']:.1f}^F",
+                    33: f"{predictions[3]['c']:.1f}^C",
+                    34: f"{predictions[4]['name']}",
+                    35: f"{predictions[4]['desc']}",
+                    36: f"{predictions[4]['f']:.1f}^F",
+                    37: f"{predictions[4]['c']:.1f}^C",
+                    38: f"{predictions[5]['name']}",
+                    39: f"{predictions[5]['desc']}",
+                    40: f"{predictions[5]['f']:.1f}^F",
+                    41: f"{predictions[5]['c']:.1f}^C",
                 } )
                     
                 # Manually adjust cell justification
@@ -613,19 +615,27 @@ class MyExtendedRoomWeather(Command):
                     8:  f"{dew_temp_c:.1f}^C",
                     9:  f"{change_of_rain} %",
                     10: f"{relative_humidity} %", 
-                    11: f"{row_2_name}",
-                    12: f"{row_2_desc}",
-                    13: f"{row_2_f:.1f}^F",
-                    14: f"{row_2_c:.1f}^C",
-                    15: f"{row_3_name}",
-                    16: f"{row_3_desc}",
-                    17: f"{row_3_f:.1f}^F",
-                    18: f"{row_3_c:.1f}^C",
+                    11: f"{predictions[1]['name']}",
+                    12: f"{predictions[1]['desc']}",
+                    13: f"{predictions[1]['f']:.1f}^F",
+                    14: f"{predictions[1]['c']:.1f}^C",
+                    15: f"{predictions[2]['name']}",
+                    16: f"{predictions[2]['desc']}",
+                    17: f"{predictions[2]['f']:.1f}^F",
+                    18: f"{predictions[2]['c']:.1f}^C",
                     19: f"{updated_date}",
-                    20: f"{row_4_name}",
-                    21: f"{row_4_desc}",
-                    22: f"{row_4_f:.1f}^F",
-                    23: f"{row_4_c:.1f}^C",
+                    20: f"{predictions[3]['name']}",
+                    21: f"{predictions[3]['desc']}",
+                    22: f"{predictions[3]['f']:.1f}^F",
+                    23: f"{predictions[3]['c']:.1f}^C",
+                    24: f"{predictions[4]['name']}",
+                    25: f"{predictions[4]['desc']}",
+                    26: f"{predictions[4]['f']:.1f}^F",
+                    27: f"{predictions[4]['c']:.1f}^C",
+                    28: f"{predictions[5]['name']}",
+                    29: f"{predictions[5]['desc']}",
+                    30: f"{predictions[5]['f']:.1f}^F",
+                    31: f"{predictions[5]['c']:.1f}^C",                                           
                 } )
                 self.caller.msg(form)
 
