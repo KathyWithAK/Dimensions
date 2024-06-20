@@ -5,10 +5,11 @@ FORM = '''
 .----------------> Weather <----------------------------------------------------------.
 |   Current: w1wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww w2wwwwwwwwwwwwwwwwww |
 '--------------------------------------------------.----------------------------------'
-| Conditions       : w3wwwwwwwwwwwwwwwwwwwwwwwwwww |                                  |
-| Wind Speed       : w4wwwwwwwwwwwwwwwwwwwwwwwwwww | Temperature  :  w5wwwww w6wwwwww |
-| Chance of Rain   : w9wwwww                       | Dew Point    :  w7wwwww w8wwwwww |
-| Relative Humidity: w10wwww                       |                                  |
+| Conditions       : w3wwwwwwwwwwwwwwwwwwwwwwwwwww | Temperature  : w5wwwww w6wwwwwww |
+| Wind Speed       : w4wwwwwwwwwwwwwwwwwwwwwwwwwww | Dew Point    : w7wwwww w8wwwwwww |
+| Chance of Rain   : w9wwwww                       |                                  |
+| Relative Humidity: w10wwww                       | Visibility   : w33wwwwwww        |
+| Actual Humidity  : w32wwww                       | Air Pressure : w34wwwwwww        |
 '--------------------------------------------------'----------------------------------'
 | w11wwwwwwwwwwwwwwwwwwwww                                           w13wwww w14wwwww |
 |   w12wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww |

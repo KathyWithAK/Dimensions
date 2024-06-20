@@ -521,8 +521,12 @@ class MyExtendedRoomWeather(Command):
             dew_temp_c, dew_temp_f = weather_utils.get_celcius_fahrenheit(
                 weather_period['dewpoint']['value'], weather_period['dewpoint']['unit'])
 
-            change_of_rain = weather_period['probabilityOfPrecipitation']['value'] or 0
-            relative_humidity = weather_period['relativeHumidity']['value']
+            change_of_rain = weather_period['probabilityOfPrecipitation']['value'] or "0"
+            relative_humidity = weather_period['relativeHumidity']['value'] or "-"
+            humidity = weather_data['humidity'] or "-"
+            visibility = weather_data['visibility'] or "-"
+            visibility_scale = weather_data['visibility_scale'] or ""
+            pressure = weather_data['pressure'] or "-"
 
             predictions = []
             for wp in weather_data['weatherPeriods']:
@@ -575,8 +579,8 @@ class MyExtendedRoomWeather(Command):
                     24: f"{moon_data['age']:.1f} days",
                     25: f"{moon_data['angularDiameter']:.2f} deg",
                     26: f"{moon_data['phase']}",
-                    27: f"{moon_data['distance']:.1f} mil",
-                    28: f"{moon_data['illumination']:.2f} %",
+                    27: f"{moon_data['distance']:.1f} million mi",
+                    28: f"{moon_data['illumination'] * 100} %",
                     29: f"{updated_date}",
                     30: f"{predictions[3]['name']}",
                     31: f"{predictions[3]['desc']}",
@@ -590,6 +594,15 @@ class MyExtendedRoomWeather(Command):
                     39: f"{predictions[5]['desc']}",
                     40: f"{predictions[5]['f']:.1f}^F",
                     41: f"{predictions[5]['c']:.1f}^C",
+                    42: f"{humidity} %",
+                    43: f"{visibility} {visibility_scale}",
+                    44: f"{pressure} 'Hg",
+                    45: f"{sun_data['sunrise_degrees']}' {sun_data['sunrise_direction']}",
+                    46: f"{sun_data['sunset_degrees']}' {sun_data['sunset_direction']}",
+                    47: f"{sun_data['sun_distance']}",
+                    48: f"{sun_data['sun_direction_degrees']}' {sun_data['sun_direction_direction']}",
+                    49: f"{sun_data['sun_altitude']} deg",
+                    50: f"{sun_data['next_solstice']}",
                 } )
                     
                 # Manually adjust cell justification
@@ -635,7 +648,10 @@ class MyExtendedRoomWeather(Command):
                     28: f"{predictions[5]['name']}",
                     29: f"{predictions[5]['desc']}",
                     30: f"{predictions[5]['f']:.1f}^F",
-                    31: f"{predictions[5]['c']:.1f}^C",                                           
+                    31: f"{predictions[5]['c']:.1f}^C",
+                    32: f"{humidity} %",
+                    33: f"{visibility} {visibility_scale}",
+                    34: f"{pressure} 'Hg",
                 } )
                 self.caller.msg(form)
 
