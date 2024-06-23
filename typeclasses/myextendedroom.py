@@ -518,11 +518,14 @@ class MyExtendedRoomWeather(Command):
                 
             air_temp_c, air_temp_f = weather_utils.get_celcius_fahrenheit(
                 weather_period['temperature'], weather_period['temperatureUnit'])
+            #dew_temp_c, dew_temp_f = weather_utils.get_celcius_fahrenheit(
+            #    weather_period['dewpoint']['value'], weather_period['dewpoint']['unit'])
             dew_temp_c, dew_temp_f = weather_utils.get_celcius_fahrenheit(
-                weather_period['dewpoint']['value'], weather_period['dewpoint']['unit'])
+                weather_data['dewpoint']['value'], weather_data['dewpoint']['unit'])            
 
             change_of_rain = weather_period['probabilityOfPrecipitation']['value'] or "0"
-            relative_humidity = weather_period['relativeHumidity']['value'] or "-"
+            #relative_humidity = weather_period['relativeHumidity']['value'] or "-"
+            relative_humidity = weather_data['relativeHumidity']['value'] or "-"
             humidity = weather_data['humidity'] or "-"
             visibility = weather_data['visibility'] or "-"
             visibility_scale = weather_data['visibility_scale'] or ""
@@ -543,11 +546,15 @@ class MyExtendedRoomWeather(Command):
 
             if self.caller.location.isEarth() and self.caller.location.isOutside():
                 # Display Earth weather, with moon and sun
-                #sun_data = weather_utils.get_sun_data(latitude=self.obj.db.latitude, 
-                #                            longitude=self.obj.db.longitude, tzid=weather_data['timeZone'])
                 sun_data = weather_data_block['sun_data']
-                #moon_data = weather_utils.get_moon_data(latitude=self.obj.db.latitude, 
-                #                            longitude=self.obj.db.longitude)
+
+                if 'next_solstice' in sun_data.keys():
+                    sun_next_label = "Solstice"
+                    sun_next_date = sun_data['next_solstice']
+                elif 'next_equinox' in sun_data.keys():
+                    sun_next_label = "Equinox"
+                    sun_next_date = sun_data['next_equinox']                  
+
                 moon_data = weather_data_block['moon_data']
 
                 form = EvForm("world.forms.form_weather_earth_outside")
@@ -577,9 +584,9 @@ class MyExtendedRoomWeather(Command):
                     22: f"{sun_data['day_length']}",
                     23: f"{moon_data['moon']}",
                     24: f"{moon_data['age']:.1f} days",
-                    25: f"{moon_data['angularDiameter']:.2f} deg",
+                    25: f"{moon_data['angularDiameter'] * 100:.2f} deg",
                     26: f"{moon_data['phase']}",
-                    27: f"{moon_data['distance']:.1f} million mi",
+                    27: f"{moon_data['distance']:,.1f} mi",
                     28: f"{moon_data['illumination'] * 100} %",
                     29: f"{updated_date}",
                     30: f"{predictions[3]['name']}",
@@ -602,7 +609,10 @@ class MyExtendedRoomWeather(Command):
                     47: f"{sun_data['sun_distance']}",
                     48: f"{sun_data['sun_direction_degrees']}' {sun_data['sun_direction_direction']}",
                     49: f"{sun_data['sun_altitude']} deg",
-                    50: f"{sun_data['next_solstice']}",
+                    50: f"{sun_next_date}",
+                    51: f"{sun_next_label}",
+                    52: f"{moon_data['next_new_moon']}",
+                    53: f"{moon_data['next_full_moon']}",
                 } )
                     
                 # Manually adjust cell justification

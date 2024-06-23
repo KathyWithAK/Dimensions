@@ -27,19 +27,19 @@ FORM = '''
 |   w39wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww |
 '-----------------------------------.-------------------------------------------------'
 | Sun Information                   |                                                 |
-|                                   |                                                 |
-| Sunrise        : w19wwwwwwwww     | Day Length   : w22wwwwwwwww                     |
-| Sunrise Angle  : w45wwwwwwwww     | Distance     : w47wwwwwwwwwwwwwwwwwwww          |
-| Noon           : w20wwwwwwwww     | Sun Angle    : w48wwwwwwwww                     |
-| Sunset         : w21wwwwwwwww     | Sun Altitude : w49wwwwwwwww                     |
-| Sunrise Angle  : w46wwwwwwwww     | Next Solstice: w50wwwwwwwwwwwwwwwwwwwwwwwwwwwww |
+|                                   | Day Length   : w22wwwwwwwww                     |
+| Sunrise        : w19wwwwwwwww     | Distance     : w47wwwwwwwwwwwwwwwwwwww          |
+| Sunrise Angle  : w45wwwwwwwww     | Sun Angle    : w48wwwwwwwww                     |
+| Noon           : w20wwwwwwwww     | Sun Altitude : w49wwwwwwwww                     |
+| Sunset         : w21wwwwwwwww     | Next w51wwwww: w50wwwwwwwwwwwwwwwwwwwwwwwwwwwww |
+| Sunrise Angle  : w46wwwwwwwww     |                                                 |
 '-----------------------------------'-------------------------------------------------'
-| Moon Information                  |                                                 |
-|                                   |                                                 |
-|    Moon        : w23wwwwwwwwwwww  |  Phase       : w26wwwwwwwwwwwwwwwwww            |
-|    Age         : w24wwwwwwwwwwww  |  Distance    : w27wwwwwwwwwwwwwwwwww            |
-|    Angle       : w25wwwwwwwwwwww  |  Illumination: w28wwwwwwwwwwwwwww               |
+| Moon Information                  |  Phase          : w26wwwwwwwwwwwwwwwwww         |
+|                                   |  Distance       : w27wwwwwwwwwwwwwwwwww         |
+|    Moon        : w23wwwwwwwwwwww  |  Illumination   : w28wwwwwwwwwwwwwww            |
+|    Age         : w24wwwwwwwwwwww  |  Next New Moon  : w52wwwwwwwwwwwwwwwwww         |
+|    Angle       : w25wwwwwwwwwwww  |  Next Full Moon : w53wwwwwwwwwwwwwwwwww         |
 '-----------------------------------'-----------------.-------------------------------'
 |  Snapshot: w29wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww |
-'-----------------------------------------------------'  
+'-----------------------------------------------------'
 '''

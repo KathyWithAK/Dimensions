@@ -34,7 +34,10 @@ def get_weather_data(latitude=42.0158121, longitude=-71.5503353):
     weather_data['city'] = j_relativelocation['properties']['city']
     weather_data['state'] = j_relativelocation['properties']['state']
 
-    response = requests.get(j_properties['forecast'])
+    weekly_forecast = j_properties['forecast']
+    hourly_forecast = j_properties['forecastHourly']
+
+    response = requests.get(weekly_forecast)
     json_data = response.json()
 
     j_properties = json_data['properties']
@@ -57,16 +60,26 @@ def get_weather_data(latitude=42.0158121, longitude=-71.5503353):
         weather_period['temperatureUnit'] = p['temperatureUnit']
         weather_period['probabilityOfPrecipitation'] = {'unit': p['probabilityOfPrecipitation']['unitCode'],
                                                             'value': p['probabilityOfPrecipitation']['value'] }
-        weather_period['dewpoint'] = {'unit': p['dewpoint']['unitCode'],
-                                            'value': p['dewpoint']['value'] }
-        weather_period['relativeHumidity'] = {'unit': p['relativeHumidity']['unitCode'],
-                                                    'value': p['relativeHumidity']['value'] }
+        #weather_period['dewpoint'] = {'unit': p['dewpoint']['unitCode'],
+        #                                    'value': p['dewpoint']['value'] }
+        #weather_period['relativeHumidity'] = {'unit': p['relativeHumidity']['unitCode'],
+        #                                            'value': p['relativeHumidity']['value'] }
         weather_period['windSpeed'] = p['windSpeed']
         weather_period['windDirection'] = p['windDirection']
         weather_period['shortForecast'] = p['shortForecast']
         weather_period['detailedForecast'] = p['detailedForecast']
 
         weather_data['weatherPeriods'].append(weather_period)
+
+    response = requests.get(hourly_forecast)
+    json_data = response.json()
+    
+    p = json_data['properties']['periods'][0]
+    if p:
+        weather_data['dewpoint'] = {'unit': p['dewpoint']['unitCode'],
+                                                         'value': p['dewpoint']['value'] }
+        weather_data['relativeHumidity'] = {'unit': p['relativeHumidity']['unitCode'],
+                                                    'value': p['relativeHumidity']['value'] }
 
     # Call secondary API for more info using coords
     url = f"https://www.timeanddate.com/weather/@{latitude},{longitude}"    
@@ -174,6 +187,8 @@ def get_sun_data(latitude=42.0158121, longitude=-71.5503353, tzid=None):
                         sun_data['sun_altitude'] = info_row.td.text.strip()[:-1]
                     elif 'Next Solstice:' in info_row.text:
                         sun_data['next_solstice'] = info_row.td.text.strip()
+                    elif 'Next Equinox:' in info_row.text:
+                        sun_data['next_equinox'] = info_row.td.text.strip()                        
     except:
         pass
 
@@ -228,6 +243,26 @@ def get_moon_data(latitude=42.0158121, longitude=-71.5503353):
                             moon_data['moonset_direction'] = direction_map[moon_data['moonset_direction'].upper()]
     except:
         pass
+
+    url = f"https://www.timeanddate.com/moon/@{latitude},{longitude}"    
+
+    try:
+        response = requests.get(url, headers=headers)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.content, 'html.parser')
+
+            info_table1 = soup.find('table', {'class' : 'table--inner-borders-rows'})
+            if info_table1:
+                for info_row in info_table1.find_all('tr'):
+
+                    if 'Next New Moon:' in info_row.text:
+                        moon_data['next_new_moon'] = info_row.td.text.strip()
+                    elif 'Next Full Moon:' in info_row.text:
+                        moon_data['next_full_moon'] = info_row.td.text.strip()
+                     
+    except:
+        pass
+
 
     return moon_data
 
